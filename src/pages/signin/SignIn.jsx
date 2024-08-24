@@ -1,4 +1,3 @@
-
 import logo from '../../../public/favicon.png'
 export default function SignIn() {
   const handlesubmit = (e)=> {
