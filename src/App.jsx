@@ -1,8 +1,9 @@
+import SignIn from "./SignIn/SignIn";
+
 function App() {
   return (
     <>
-      <h2 className="text-red-500">Sahadat </h2>
-
+      <SignIn></SignIn>
     </>
   );
 }
