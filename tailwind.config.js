@@ -15,7 +15,7 @@ export default {
         primary: "#313844",
         secondary: "#282E38",
         "header-bg": "#2C333E",
-        "text-color": "#333333",
+        "text-color": "#c4c7d1",
       },
     },
   },
