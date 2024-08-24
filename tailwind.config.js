@@ -10,7 +10,13 @@ export default {
       poppins: ["Poppins", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#313844",
+        secondary: "#282E38",
+        "header-bg": "#2C333E",
+      },
+    },
   },
   plugins: [],
 };
