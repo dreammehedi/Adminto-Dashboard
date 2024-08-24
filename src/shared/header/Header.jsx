@@ -29,7 +29,7 @@ function Header() {
             {/* search form */}
             <form className="hidden lg:inline-block relative">
               <input
-                className="bg-primary text-text-color rounded-full px-4 py-2 text-sm placeholder:text-sm outline-none"
+                className="bg-secondary text-text-color rounded-full px-4 py-2 text-sm placeholder:text-sm outline-none"
                 name="searchDashboard"
                 type="text"
                 placeholder="Search..."
@@ -97,13 +97,13 @@ function Header() {
                   Welcome!
                 </span>
                 <ul className="text-sm text-text-color *:flex *:place-items-center *:gap-2 *:px-4 *:py-2">
-                  <li className="hover:bg-primary hover:text-white">
+                  <li className="hover:bg-secondary hover:text-white">
                     <FaRegUser></FaRegUser> My Account
                   </li>
-                  <li className="hover:bg-primary hover:text-white border-b border-primary">
+                  <li className="hover:bg-secondary hover:text-white border-b border-secondary">
                     <MdLockOpen></MdLockOpen> Lock Screen
                   </li>
-                  <li className="hover:bg-primary hover:text-white">
+                  <li className="hover:bg-secondary hover:text-white">
                     <PiArrowCounterClockwiseBold></PiArrowCounterClockwiseBold>
                     Logout
                   </li>
@@ -123,10 +123,10 @@ function Header() {
               mobileSearchForm
                 ? "top-[70px] md:top-[78px] visible"
                 : "top-[100px] invisible"
-            } my-transition !lg:hidden absolute w-[90%] left-1/2 -translate-x-1/2 bg-secondary p-4 md:p-6 rounded-md ring-1 ring-primary`}
+            } my-transition lg:hidden absolute w-[90%] left-1/2 -translate-x-1/2 bg-secondary p-4 md:p-6 rounded-md ring-1 ring-secondary`}
           >
             <input
-              className="bg-secondary text-text-color rounded-md w-full px-4 py-2 text-sm placeholder:text-sm outline-none ring-1 ring-primary"
+              className="bg-secondary text-text-color rounded-md w-full px-4 py-2 text-sm placeholder:text-sm outline-none ring-1 ring-secondary"
               name="searchDashboard"
               type="text"
               placeholder="Search..."
