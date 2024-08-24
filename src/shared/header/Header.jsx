@@ -13,11 +13,14 @@ function Header() {
   // user account info
   const [userAccountInfo, setUserAccountInfo] = useState(false);
 
+  // mobile search show
+  const [mobileSearchForm, setMobileSearchForm] = useState(false);
+
   return (
     <>
       {/* header */}
       <header className="bg-header-bg">
-        <div className="container flex justify-between items-center gap-4 py-4 md:py-5">
+        <div className="relative container flex justify-between items-center gap-4 py-4 md:py-5">
           {/* logo */}
           <Logo></Logo>
 
@@ -40,8 +43,17 @@ function Header() {
             </form>
 
             {/* search icon */}
-            <button>
-              <IoIosSearch className="lg:hidden text-white text-2xl"></IoIosSearch>
+            <button
+              onClick={() => {
+                setMobileSearchForm(!mobileSearchForm);
+                setUserAccountInfo(false);
+              }}
+            >
+              <IoIosSearch
+                className={`${
+                  mobileSearchForm && "text-orange-500"
+                } lg:hidden text-white text-2xl`}
+              ></IoIosSearch>
             </button>
 
             {/* notification icon */}
@@ -56,15 +68,20 @@ function Header() {
             <div
               onClick={() => {
                 setUserAccountInfo(!userAccountInfo);
+                setMobileSearchForm(false);
               }}
-              className="relative flex place-items-center gap-2 cursor-pointer"
+              className={` relative flex place-items-center gap-2 cursor-pointer`}
             >
               <img
                 className="size-[35px] object-cover rounded-full"
                 src="https://i.ibb.co/FnB9kzw/download.jpg"
                 alt="user"
               />
-              <strong className="flex place-items-center gap-2 text-sm text-white">
+              <strong
+                className={`${
+                  userAccountInfo && "text-orange-500"
+                } flex place-items-center gap-2 text-sm text-white`}
+              >
                 Mehedi <IoIosArrowDown></IoIosArrowDown>
               </strong>
 
@@ -99,6 +116,22 @@ function Header() {
               <MdSettingsSuggest className="text-text-color text-3xl"></MdSettingsSuggest>
             </button>
           </div>
+
+          {/* mobile search form */}
+          <form
+            className={`${
+              mobileSearchForm
+                ? "top-[70px] md:top-[78px] visible"
+                : "top-[100px] invisible"
+            } my-transition !lg:hidden absolute w-[90%] left-1/2 -translate-x-1/2 bg-secondary p-4 md:p-6 rounded-md ring-1 ring-primary`}
+          >
+            <input
+              className="bg-secondary text-text-color rounded-md w-full px-4 py-2 text-sm placeholder:text-sm outline-none ring-1 ring-primary"
+              name="searchDashboard"
+              type="text"
+              placeholder="Search..."
+            />
+          </form>
         </div>
       </header>
     </>
