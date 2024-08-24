@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { FaRegUser } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaElementor, FaRegUser } from "react-icons/fa";
+import { HiMenuAlt1 } from "react-icons/hi";
 import {
   IoIosArrowDown,
   IoIosNotifications,
   IoIosSearch,
 } from "react-icons/io";
-import { MdLockOpen, MdSettingsSuggest } from "react-icons/md";
+import { MdDashboard, MdLockOpen, MdSettingsSuggest } from "react-icons/md";
 import { PiArrowCounterClockwiseBold } from "react-icons/pi";
+import { SiPowerpages } from "react-icons/si";
+import { TbComponents } from "react-icons/tb";
+import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 
 function Header() {
@@ -16,14 +21,37 @@ function Header() {
   // mobile search show
   const [mobileSearchForm, setMobileSearchForm] = useState(false);
 
+  // mobile navbar
+  const [mobileNavbar, setMobileNavbar] = useState(false);
+
   return (
     <>
       {/* header */}
       <header className="bg-header-bg">
         <div className="relative container flex justify-between items-center gap-4 py-4 md:py-5">
-          {/* logo */}
-          <Logo></Logo>
+          <div className="flex place-content-center gap-3">
+            {/* logo */}
 
+            <div className="hidden lg:inline-block">
+              <Logo></Logo>
+            </div>
+
+            {/* navbar show button */}
+            <button
+              onClick={() => {
+                setMobileNavbar(!mobileNavbar);
+                setUserAccountInfo(false);
+                setMobileSearchForm(false);
+              }}
+              className="lg:hidden my-transition hover:text-blue-400 text-3xl text-text-color"
+            >
+              {mobileNavbar ? (
+                <AiOutlineClose></AiOutlineClose>
+              ) : (
+                <HiMenuAlt1></HiMenuAlt1>
+              )}
+            </button>
+          </div>
           {/* navigation */}
           <div className="flex justify-between items-center gap-4">
             {/* search form */}
@@ -47,6 +75,7 @@ function Header() {
               onClick={() => {
                 setMobileSearchForm(!mobileSearchForm);
                 setUserAccountInfo(false);
+                setMobileNavbar(false);
               }}
             >
               <IoIosSearch
@@ -69,6 +98,7 @@ function Header() {
               onClick={() => {
                 setUserAccountInfo(!userAccountInfo);
                 setMobileSearchForm(false);
+                setMobileNavbar(false);
               }}
               className={` relative flex place-items-center gap-2 cursor-pointer`}
             >
@@ -91,7 +121,7 @@ function Header() {
                   userAccountInfo
                     ? "top-[52px] md:top-[56px] visible"
                     : "top-[104px] invisible"
-                } py-2 my-transition w-[180px] absolute left-0 bg-secondary rounded-md overflow-hidden`}
+                } py-2 my-transition w-[180px] absolute left-0 bg-primary rounded-md overflow-hidden`}
               >
                 <span className="text-xs text-white px-4 pb-4 inline-block">
                   Welcome!
@@ -123,10 +153,10 @@ function Header() {
               mobileSearchForm
                 ? "top-[70px] md:top-[78px] visible"
                 : "top-[100px] invisible"
-            } my-transition lg:hidden absolute w-[90%] left-1/2 -translate-x-1/2 bg-secondary p-4 md:p-6 rounded-md ring-1 ring-secondary`}
+            } my-transition lg:hidden absolute w-[90%] left-1/2 -translate-x-1/2 bg-primary p-4 md:p-6 rounded-md ring-1 ring-secondary`}
           >
             <input
-              className="bg-secondary text-text-color rounded-md w-full px-4 py-2 text-sm placeholder:text-sm outline-none ring-1 ring-secondary"
+              className="bg-primary text-text-color rounded-md w-full px-4 py-2 text-sm placeholder:text-sm outline-none ring-1 ring-secondary"
               name="searchDashboard"
               type="text"
               placeholder="Search..."
@@ -134,6 +164,148 @@ function Header() {
           </form>
         </div>
       </header>
+
+      {/* mobile & tablet navbar */}
+      <nav
+        className={`${
+          mobileNavbar ? "visible top-[70px]" : "invisible top-[100px]"
+        } my-transition lg:hidden bg-primary w-full h-fit absolute left-0`}
+      >
+        <ul className="container py-3 flex flex-col gap-4 md:gap-6 text-sm font-normal h-fit">
+          <NavLink
+            to={"/"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex items-center gap-3 text-blue-400 capitalize"
+                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <MdDashboard></MdDashboard>
+            Dashboard
+          </NavLink>
+          <NavLink
+            to={"/ui-elements"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
+                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <div className="flex place-items-center gap-3">
+              <FaElementor></FaElementor>
+              UI Elements
+            </div>
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+          <NavLink
+            to={"/apps"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
+                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <div className="flex place-items-center gap-3">
+              <FaElementor></FaElementor>
+              Apps
+            </div>
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+          <NavLink
+            to={"/components"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
+                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <div className="flex place-items-center gap-3">
+              <FaElementor></FaElementor>
+              Components
+            </div>
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+          <NavLink
+            to={"/pages"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
+                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <div className="flex place-items-center gap-3">
+              <FaElementor></FaElementor>
+              Pages
+            </div>
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+        </ul>
+      </nav>
+
+      {/* navbar */}
+      <nav className="hidden lg:block bg-primary ">
+        <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
+          <NavLink
+            to={"/"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex items-center gap-3 text-blue-400 capitalize"
+                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <MdDashboard></MdDashboard>
+            Dashboard
+          </NavLink>
+          <NavLink
+            to={"/ui-elements"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex items-center gap-3 text-blue-400 capitalize"
+                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <FaElementor></FaElementor>
+            UI Elements
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+          <NavLink
+            to={"/apps"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex items-center gap-3 text-blue-400 capitalize"
+                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <FaElementor></FaElementor>
+            Apps
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+          <NavLink
+            to={"/components"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex items-center gap-3 text-blue-400 capitalize"
+                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <TbComponents></TbComponents>
+            Components
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+          <NavLink
+            to={"/pages"}
+            className={({ isActive }) => {
+              return isActive
+                ? "flex items-center gap-3 text-blue-400 capitalize"
+                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
+            }}
+          >
+            <SiPowerpages></SiPowerpages>
+            Pages
+            <IoIosArrowDown></IoIosArrowDown>
+          </NavLink>
+        </ul>
+      </nav>
     </>
   );
 }

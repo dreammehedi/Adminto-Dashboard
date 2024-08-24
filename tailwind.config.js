@@ -12,7 +12,7 @@ export default {
     },
     extend: {
       colors: {
-        primary: "#2c333e",
+        primary: "#313844",
         secondary: "#282e38",
         "header-bg": "#2c333e",
         "text-color": "#c4c7d1",
