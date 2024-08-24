@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import bgSignUp from "../../image/bgSignUp.jpg";
-import logo from "../../image/logo.png";
+import logo from "../../../public/favicon.png";
 const SignUp = () => {
 const handleRegister = e => {
   e.preventDefault();
@@ -19,7 +19,7 @@ const checkbox = form.checkbox.value;
       style={{ backgroundImage: `url(${bgSignUp})` }}
     >
       <div className="flex flex-col justify-center items-center gap-y-2">
-        <img className="md:w-40" src={logo} alt="" />
+       <div className="flex justify-center items-center"> <img className="md:w-8" src={logo} alt="" /><h1 className='text-3xl font-bold text-gray-200'>Adminto</h1></div>
         <p className="text-gray-300 text-sm ">Responsive Admin Dashboard</p>
       </div>
       {/* form */}
