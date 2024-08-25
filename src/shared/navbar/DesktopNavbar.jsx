@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { SiPowerpages } from "react-icons/si";
 import { TbComponents } from "react-icons/tb";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // subMenu component
 function SubMenu({ label, icon: Icon, subItems }) {
@@ -30,12 +30,16 @@ function SubMenu({ label, icon: Icon, subItems }) {
         >
           {subItems.map((item) => (
             <li key={item.label}>
-              <Link
+              <NavLink
                 to={item.to}
-                className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                className={({ isActive }) => {
+                  return isActive
+                    ? "px-5 py-3 text-blue-400 w-full flex items-center"
+                    : "my-transition px-5 py-3 text-text-color hover:bg-primary hover:text-blue-400 w-full flex items-center";
+                }}
               >
                 {item.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -77,13 +81,17 @@ function DropdownMenu({ label, icon: Icon, items }) {
               />
             ) : (
               <li key={item.label}>
-                <Link
+                <NavLink
                   to={item.to}
-                  className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                  className={({ isActive }) => {
+                    return isActive
+                      ? "px-5 py-3 text-blue-400 w-full flex items-center"
+                      : "my-transition px-5 py-3 text-text-color hover:bg-primary hover:text-blue-400 w-full flex items-center";
+                  }}
                 >
                   {item.icon && <item.icon className="mr-3" />}
                   {item.label}
-                </Link>
+                </NavLink>
               </li>
             )
           )}
@@ -130,13 +138,13 @@ function DesktopNavbar() {
     {
       label: "Utility",
       subItems: [
-        { label: "Pricing", to: "/" },
-        { label: "Timeline", to: "/" },
-        { label: "Invoice", to: "/" },
-        { label: "FAQs", to: "/" },
-        { label: "Gallery", to: "/" },
-        { label: "Maintenance", to: "/" },
-        { label: "Coming Soon", to: "/" },
+        { label: "Pricing", to: "/extra-pages/pricing" },
+        { label: "Timeline", to: "/extra-pages/timeline" },
+        { label: "Invoice", to: "/extra-pages/invoice" },
+        { label: "FAQs", to: "/extra-pages/FAQs" },
+        { label: "Gallery", to: "/extra-pages/gallery" },
+        { label: "Maintenance", to: "/extra-pages/maintenence" },
+        { label: "Coming Soon", to: "/extra-pages/comingsoon" },
       ],
     },
   ];

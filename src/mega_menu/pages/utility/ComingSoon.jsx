@@ -2,7 +2,7 @@ function ComingSoon() {
   return (
     <>
       {/* coming soon page */}
-      <section>coming Soon</section>
+      <section>Coming Soon</section>
     </>
   );
 }
