@@ -1,4 +1,6 @@
 import * as Icons from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Logo from "../../../shared/header/Logo";
 const maintenenceNotification = [
   {
@@ -67,6 +69,14 @@ function Maintenence() {
             );
           })}
         </div>
+
+        {/* back to home navigate */}
+        <Link to="/">
+          <button className="mt-8 px-4 py-2 text-white bg-blue-400 rounded-md my-transition hover:bg-blue-400/50 ring-1 ring-primary flex items-center gap-2">
+            <FaHome></FaHome>
+            Back to Home
+          </button>
+        </Link>
       </section>
     </>
   );
