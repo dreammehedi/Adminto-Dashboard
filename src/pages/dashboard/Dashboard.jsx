@@ -1,16 +1,10 @@
-import { Outlet } from "react-router-dom";
-import Footer from "../../shared/footer/Footer";
-import Header from "../../shared/header/Header";
-
 function Dashboard() {
   return (
     <>
-      {/* header */}
-      <Header></Header>
-      <div className="min-h-[calc(100vh-184px)]">
-        <Outlet></Outlet>
-        </div>
-       <Footer></Footer>
+      {/* dashboard main layout */}
+      <main className="bg-secondary py-4 md:py-6 lg:py-8 text-white">
+        <div className="container">Dashboard</div>
+      </main>
     </>
   );
 }

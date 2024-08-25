@@ -1,9 +1,18 @@
-import Dashboard from "./../pages/dashboard/Dashboard";
+import { Outlet } from "react-router-dom";
+import Footer from "./../shared/footer/Footer";
+import Header from "./../shared/header/Header";
+
 function DashboardMainLayout() {
   return (
     <>
-      <Dashboard></Dashboard>
-      
+      {/* header */}
+      <Header></Header>
+
+      {/* outlet */}
+      <Outlet></Outlet>
+
+      {/* footer */}
+      <Footer></Footer>
     </>
   );
 }
