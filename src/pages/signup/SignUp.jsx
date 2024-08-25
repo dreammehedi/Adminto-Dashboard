@@ -1,98 +1,141 @@
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import bgSignUp from "../../image/bgSignUp.jpg";
 import logo from "../../../public/favicon.png";
 const SignUp = () => {
-const handleRegister = e => {
-  e.preventDefault();
-  const form = e.target;
-const name = form.name.value;
-const email = form.email.value;
-const pass = form.pass.value;
-const checkbox = form.checkbox.value;
- const registerData = {name,email,pass,checkbox};
- console.log(registerData);
-}
-  
+  // show password
+  const [showPassword, setShowPassword] = useState(false);
+
+  // handle sign up
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const pass = form.pass.value;
+    const checkbox = form.checkbox.value;
+    const registerData = { name, email, pass, checkbox };
+    console.log(registerData);
+  };
+
   return (
-    <div
-      className="min-h-screen w-full bg-cover bg-no-repeat bg-center flex flex-col gap-y-4 justify-center items-center"
-      style={{ backgroundImage: `url(${bgSignUp})` }}
-    >
-      <div className="flex flex-col justify-center items-center gap-y-2">
-       <div className="flex justify-center items-center"> <img className="md:w-8" src={logo} alt="" /><h1 className='text-3xl font-bold text-gray-200'>Adminto</h1></div>
-        <p className="text-gray-300 text-sm ">Responsive Admin Dashboard</p>
-      </div>
-      {/* form */}
-      <div className="md:w-[480px] md:h-[580px] p-[36px] bg-gray-700 rounded-xl   ">
-       <div>
-       <h2 className=" mt-4  mb-8 text-xl font-semibold text-white text-center">
-          Register
-        </h2>
-        <form onSubmit={handleRegister}>
-          <div className="mb-4 flex flex-col space-y-4">
-            {/* name */}
-            <label htmlFor="">
-              <p className="text-gray-300 mb-2">Full name</p>
+    <>
+      {/* sign up page */}
+      <section
+        style={{
+          backgroundImage: `url(https://i.ibb.co/nPc1rQV/bg-auth-dark-9f5c5b379d98c3f0f520.jpg)`,
+        }}
+        className="w-full flex flex-col h-screen justify-center items-center !bg-no-repeat !bg-cover !bg-center text-white py-6 md:py-8 lg:py-10"
+      >
+        {/* logo */}
+        <div className="flex justify-center items-center mb-6">
+          <img className="w-9" src={logo} alt="logo" />
+          <h1 className="text-3xl font-bold text-gray-200">Adminto</h1>
+        </div>
+
+        {/* form */}
+        <div className="bg-primary w-[90%] max-w-md h-fit mx-auto rounded-md p-4 md:p-6 lg:p-8">
+          <form onSubmit={handleSignUp} className="flex flex-col gap-4">
+            <h1 className="text-white font-semibold  text-center uppercase">
+              Sign Up
+            </h1>
+            <div className="flex flex-col space-y-2">
+              <label
+                className="text-text-color text-sm font-semibold capitalize"
+                htmlFor="fullName"
+              >
+                Full Name
+              </label>
               <input
-                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none  border-gray-500 focus:ring-1 bg-gray-700 text-gray-300  mb-3"
-                placeholder="Username"
-                name="name"
-                type="text"
+                placeholder="Enter Full Name.."
+                className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                type="email"
+                name="fullName"
+                id="fullName"
                 required
               />
-            </label>
-            {/* email */}
-            <label htmlFor="">
-              <p className="text-gray-300 mb-2">Email address </p>
+            </div>
+
+            <div className="flex flex-col space-y-2">
+              <label
+                className="text-text-color text-sm font-semibold capitalize"
+                htmlFor="email"
+              >
+                Email Address
+              </label>
               <input
-                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none  border-gray-500 focus:ring-1 bg-gray-700 text-gray-300 mb-3"
-                placeholder="Enter yur email"
+                placeholder="Enter Email Address.."
+                className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                type="email"
                 name="email"
-                type="text"
+                id="email"
                 required
               />
-            </label>
-            {/* password */}
-            <label htmlFor="">
-              <p className="text-gray-300 mb-2">Password</p>
+            </div>
+
+            <div className="flex flex-col space-y-2 ">
+              <label
+                className="text-text-color text-sm font-semibold  capitalize"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  className="w-full outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-[#363e4b]"
+                  placeholder="Enter Password.."
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  required
+                />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowPassword(!showPassword);
+                  }}
+                  className="absolute top-1/2 -translate-y-1/2 right-3 text-text-color"
+                >
+                  {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+                </button>
+              </div>
+            </div>
+            <div className="flex gap-x-2">
               <input
-                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:outline-none  border-gray-500 focus:ring-1 bg-gray-700 text-gray-300  mb-3"
-                placeholder="Enter your password"
-                name="pass"
-                type="text"
-                required
+                type="checkbox"
+                name="termsCondition"
+                id="termsCondition"
               />
-            </label>
-          </div>
-          <div className="mb-6 flex items-center space-x-2 accent-sky-600">
-            <input type="checkbox" id="keep_signed_in" name="checkbox" required />
-            <label
-              className="select-none text-sm font-medium text-gray-300"
-              htmlFor="keep_signed_in"
+              <label
+                htmlFor="termsCondition"
+                className="text-sm text-text-color"
+              >
+                I accept Terms and Conditions
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="bg-[#71b6f9] rounded-md text-white p-2 hover:bg-[#3973ad] transition-all duration-300"
             >
-              I accept Terms and Conditions
-            </label>
-          </div>
-          <button className="inline-flex h-10 w-full items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium uppercase text-white hover:bg-blue-400">
-            Sign Up
-          </button>
-        </form>
-       </div>
-      </div>
+              Sign Up
+            </button>
+          </form>
+        </div>
 
-
-
-
-      <h1 className="text-center text-gray-300">
-        All ready have an account?
-        <Link to={"/signin"}>
-          {" "}
-          <span className="text-white font-bold cursor-pointer">
-            SignIn
-          </span>{" "}
-        </Link>
-      </h1>
-    </div>
+        <div className="mt-6 text-text-color text-center text-sm">
+          <h1 className="text-center text-text-color">
+            Already have an account?
+            <Link to={"/signin"}>
+              {" "}
+              <span className="text-white font-bold cursor-pointer my-transition hover:text-blue-400 underline">
+                SignIn
+              </span>{" "}
+            </Link>
+          </h1>
+        </div>
+      </section>
+    </>
   );
 };
 
