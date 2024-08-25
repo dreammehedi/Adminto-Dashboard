@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-[99999]">
+      <div className="w-full sticky top-0 z-[99999]">
         {/* header */}
         <header className="bg-header-bg">
           <div className="relative container flex justify-between items-center gap-4 py-4 md:py-5">

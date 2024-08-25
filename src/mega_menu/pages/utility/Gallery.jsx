@@ -41,22 +41,26 @@ function Gallery() {
   const [filterCategory, setFilterCategory] = useState(galleryData);
 
   // selected category
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
     <>
       {/* gallery page */}
       <section className="bg-secondary py-6">
-        <div className="container -mt-6">
+        <div className="container -mt-6 overflow-hidden">
           {/* category */}
-          <ul className="flex items-center gap-4 md:gap-6 text-white text-sm">
+          <ul className="flex items-center gap-4 md:gap-6 text-white text-sm font-medium">
             <li
               onClick={() => {
                 setSelectedCategory("All");
                 setFilterCategory(galleryData);
               }}
             >
-              <button className="text-blue-400">All</button>
+              <button
+                className={selectedCategory === "All" ? "text-blue-400" : ""}
+              >
+                All
+              </button>
             </li>
             {uniqueCategories.map((category, ind) => {
               return (

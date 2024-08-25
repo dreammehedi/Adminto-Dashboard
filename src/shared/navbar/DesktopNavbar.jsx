@@ -151,7 +151,7 @@ function DesktopNavbar() {
 
   return (
     <nav className="hidden lg:block bg-primary">
-      <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
+      <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal overflow-hidden">
         <NavLink
           to={"/"}
           className={({ isActive }) =>
