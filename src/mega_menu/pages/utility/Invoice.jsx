@@ -3,7 +3,8 @@ function Invoice() {
     <>
       {/* invoice page */}
       <section className="bg-secondary  text-gray-200 py-6">
-        <div className="bg-primary container rounded shadow-lg  mx-auto p-8 *:flex *:flex-col *:gap-4 md:*:flex-row *:justify-between">
+        {/* page title div */}
+        <div className="bg-primary container rounded shadow-lg  mx-auto py-8 *:flex *:flex-col *:gap-4 md:*:flex-row *:justify-between">
           <div className="text-2xl font-semibold border-b border-gray-700 pb-6">
             <h1 className="">Adminto</h1>
             <h1 className="text-base">
@@ -30,6 +31,7 @@ function Invoice() {
               </h1>
             </div>
           </div>
+          {/* invoice table start */}
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm text-gray-400">
               <thead>
