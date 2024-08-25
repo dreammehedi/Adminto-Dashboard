@@ -9,6 +9,17 @@ const router = createBrowserRouter([
     path: "/",
     element: <DashboardMainLayout></DashboardMainLayout>,
     errorElement: <Error></Error>,
+    children:[
+      {
+        path:"/",
+        element:<h2 className="text-4xl text-white">Hello world</h2>
+
+      },
+      {
+        path:'x',
+        element: <h1 className="text-4xl text-white" >testing route </h1>
+      }
+    ]
   },
   {
     path: "/signup",
