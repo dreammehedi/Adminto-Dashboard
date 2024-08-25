@@ -104,25 +104,25 @@ function DropdownMenu({ label, icon: Icon, items }) {
 // render component
 function DesktopNavbar() {
   const appsItems = [
-    { label: "Calendar", to: "/calendar" },
-    { label: "Chat", to: "/chat" },
+    { label: "Calendar", to: "/apps/calendar" },
+    { label: "Chat", to: "/apps/chat" },
     {
       label: "Email",
-      subItems: [{ label: "Inbox", to: "/inbox" }],
+      subItems: [{ label: "Inbox", to: "/apps/inbox" }],
     },
     {
       label: "Tasks",
       subItems: [
-        { label: "Kanban Board", to: "/" },
-        { label: "Details", to: "/" },
+        { label: "Kanban Board", to: "/apps/kanban-board" },
+        { label: "Details", to: "/apps/detailes" },
       ],
     },
-    { label: "Projects", to: "/projects" },
+    { label: "Projects", to: "/apps/projects" },
     {
       label: "Contacts",
       subItems: [
-        { label: "Member List", to: "/" },
-        { label: "Profile", to: "/" },
+        { label: "Member List", to: "/apps/memberlist" },
+        { label: "Profile", to: "/apps/profile" },
       ],
     },
   ];

@@ -1,6 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardMainLayout from "../layout/DashboardMainLayout";
+import Calendar from "../mega_menu/apps/Calendar";
 import Error500 from "../mega_menu/pages/errors/Error500";
+import Chat from "./../mega_menu/apps/Chat";
+import MembersList from "./../mega_menu/apps/contacts/MembersList";
+import Profile from "./../mega_menu/apps/contacts/Profile";
+import Inbox from "./../mega_menu/apps/email/Inbox";
+import Projects from "./../mega_menu/apps/Projects";
+import Detailes from "./../mega_menu/apps/tasks/Detailes";
+import KanbanBoard from "./../mega_menu/apps/tasks/KanbanBoard";
 import ComingSoon from "./../mega_menu/pages/utility/ComingSoon";
 import FAQs from "./../mega_menu/pages/utility/FAQs";
 import Gallery from "./../mega_menu/pages/utility/Gallery";
@@ -24,6 +32,47 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard></Dashboard>,
       },
+
+      // apps router
+      {
+        path: "/apps/calendar",
+        element: <Calendar></Calendar>,
+      },
+      {
+        path: "/apps/chat",
+        element: <Chat></Chat>,
+      },
+      // email sub router
+      {
+        path: "/apps/inbox",
+        element: <Inbox></Inbox>,
+      },
+
+      // tasks sub router
+      {
+        path: "/apps/kanban-board",
+        element: <KanbanBoard></KanbanBoard>,
+      },
+      {
+        path: "/apps/detailes",
+        element: <Detailes></Detailes>,
+      },
+      {
+        path: "/apps/projects",
+        element: <Projects></Projects>,
+      },
+
+      // contacts sub router
+      {
+        path: "/apps/memberlist",
+        element: <MembersList></MembersList>,
+      },
+      {
+        path: "/apps/profile",
+        element: <Profile></Profile>,
+      },
+
+      // extra pages router
       {
         path: "/extra-pages/pricing",
         element: <Pricing></Pricing>,

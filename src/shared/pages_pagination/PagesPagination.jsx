@@ -4,7 +4,11 @@ function PagesPagination() {
   // current location get
   const { pathname } = useLocation();
   const pathnameSplit = pathname.split("/");
+  const middlePathName = pathnameSplit[pathnameSplit.length - 2];
   const currentPathName = pathnameSplit[pathnameSplit.length - 1];
+
+  const middlePathNameUpdate = middlePathName.split("-").join(" ");
+  // console.log(middlePathNameUpdate.join(" "));
 
   return (
     <>
@@ -23,7 +27,9 @@ function PagesPagination() {
             </li>
             <li>{`>`}</li>
             <li>
-              <Link to={"/extra-pages/paricing"}>Extra Pages</Link>
+              <Link to={"/extra-pages/paricing"} className="capitalize">
+                {middlePathNameUpdate}
+              </Link>
             </li>
             <li>{`>`}</li>
             <li className="text-text-color cursor-default capitalize">
