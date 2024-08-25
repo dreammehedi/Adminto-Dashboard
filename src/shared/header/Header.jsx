@@ -183,62 +183,34 @@ function Header() {
             <MdDashboard></MdDashboard>
             Dashboard
           </NavLink>
-          <NavLink
-            to={"/ui-elements"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
-                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
             <div className="flex place-items-center gap-3">
               <FaElementor></FaElementor>
               UI Elements
             </div>
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
-          <NavLink
-            to={"/apps"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
-                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          </button>
+          <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
             <div className="flex place-items-center gap-3">
               <FaElementor></FaElementor>
               Apps
             </div>
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
-          <NavLink
-            to={"/components"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
-                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          </button>
+          <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
             <div className="flex place-items-center gap-3">
               <FaElementor></FaElementor>
               Components
             </div>
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
-          <NavLink
-            to={"/pages"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex justify-between items-center gap-3 text-blue-400 capitalize"
-                : "flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          </button>
+          <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
             <div className="flex place-items-center gap-3">
               <FaElementor></FaElementor>
               Pages
             </div>
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
+          </button>
         </ul>
       </nav>
 
@@ -256,54 +228,26 @@ function Header() {
             <MdDashboard></MdDashboard>
             Dashboard
           </NavLink>
-          <NavLink
-            to={"/ui-elements"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex items-center gap-3 text-blue-400 capitalize"
-                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
             <FaElementor></FaElementor>
             UI Elements
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
-          <NavLink
-            to={"/apps"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex items-center gap-3 text-blue-400 capitalize"
-                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          </button>
+          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
             <FaElementor></FaElementor>
             Apps
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
-          <NavLink
-            to={"/components"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex items-center gap-3 text-blue-400 capitalize"
-                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          </button>
+          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
             <TbComponents></TbComponents>
             Components
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
-          <NavLink
-            to={"/pages"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex items-center gap-3 text-blue-400 capitalize"
-                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
+          </button>
+          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
             <SiPowerpages></SiPowerpages>
             Pages
             <IoIosArrowDown></IoIosArrowDown>
-          </NavLink>
+          </button>
         </ul>
       </nav>
     </>
