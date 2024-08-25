@@ -93,10 +93,6 @@ const router = createBrowserRouter([
         path: "/extra-pages/gallery",
         element: <Gallery></Gallery>,
       },
-      {
-        path: "/extra-pages/maintenence",
-        element: <Maintenence></Maintenence>,
-      },
     ],
   },
 
@@ -130,6 +126,13 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  // maintenence router
+  {
+    path: "/extra-pages/maintenence",
+    element: <Maintenence></Maintenence>,
+  },
+
   // coming soon router
   {
     path: "/extra-pages/comingsoon",

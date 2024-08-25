@@ -5,7 +5,7 @@ import Logo from "../../../shared/header/Logo";
 function ComingSoon() {
   return (
     <>
-      {/* error 404 page */}
+      {/* coming soon page */}
       <section
         style={{
           backgroundImage: `url(https://i.ibb.co/nPc1rQV/bg-auth-dark-9f5c5b379d98c3f0f520.jpg)`,
