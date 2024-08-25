@@ -31,10 +31,7 @@ function Header() {
           <div className="flex place-content-center gap-3">
             {/* logo */}
 
-            <div className="hidden lg:inline-block">
-              <Logo></Logo>
-            </div>
-
+            <Logo></Logo>
             {/* navbar show button */}
             <button
               onClick={() => {

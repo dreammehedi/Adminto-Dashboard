@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from "../../../public/favicon.png";
+import Logo from "../../shared/header/Logo";
 const SignUp = () => {
   // show password
   const [showPassword, setShowPassword] = useState(false);
@@ -28,9 +28,8 @@ const SignUp = () => {
         className="w-full flex flex-col h-screen justify-center items-center !bg-no-repeat !bg-cover !bg-center text-white py-6 md:py-8 lg:py-10"
       >
         {/* logo */}
-        <div className="flex justify-center items-center mb-6">
-          <img className="w-9" src={logo} alt="logo" />
-          <h1 className="text-3xl font-bold text-gray-200">Adminto</h1>
+        <div className="mb-4">
+          <Logo></Logo>
         </div>
 
         {/* form */}
