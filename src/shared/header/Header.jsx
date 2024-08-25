@@ -9,9 +9,8 @@ import {
 } from "react-icons/io";
 import { MdDashboard, MdLockOpen, MdSettingsSuggest } from "react-icons/md";
 import { PiArrowCounterClockwiseBold } from "react-icons/pi";
-import { SiPowerpages } from "react-icons/si";
-import { TbComponents } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
+import DesktopNavbar from "../navbar/DesktopNavbar";
 import Logo from "./Logo";
 
 function Header() {
@@ -214,42 +213,8 @@ function Header() {
         </ul>
       </nav>
 
-      {/* navbar */}
-      <nav className="hidden lg:block bg-primary ">
-        <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
-          <NavLink
-            to={"/"}
-            className={({ isActive }) => {
-              return isActive
-                ? "flex items-center gap-3 text-blue-400 capitalize"
-                : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-            }}
-          >
-            <MdDashboard></MdDashboard>
-            Dashboard
-          </NavLink>
-          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <FaElementor></FaElementor>
-            UI Elements
-            <IoIosArrowDown></IoIosArrowDown>
-          </button>
-          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <FaElementor></FaElementor>
-            Apps
-            <IoIosArrowDown></IoIosArrowDown>
-          </button>
-          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <TbComponents></TbComponents>
-            Components
-            <IoIosArrowDown></IoIosArrowDown>
-          </button>
-          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <SiPowerpages></SiPowerpages>
-            Pages
-            <IoIosArrowDown></IoIosArrowDown>
-          </button>
-        </ul>
-      </nav>
+      {/* desktoop navbar */}
+      <DesktopNavbar></DesktopNavbar>
     </>
   );
 }
