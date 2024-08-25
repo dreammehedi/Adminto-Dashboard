@@ -123,8 +123,8 @@ function DesktopNavbar() {
     {
       label: "Errors",
       subItems: [
-        { label: "Error - 404", to: "/" },
-        { label: "Error - 500", to: "/" },
+        { label: "Error - 404", to: "/error-404" },
+        { label: "Error - 500", to: "/error-500" },
       ],
     },
     {

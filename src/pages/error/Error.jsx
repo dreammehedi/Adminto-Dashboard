@@ -1,7 +1,9 @@
+import PropTypes from "prop-types";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../../shared/header/Logo";
-function Error() {
+
+function Error({ code, title, message }) {
   return (
     <>
       {/* error 404 page */}
@@ -19,12 +21,13 @@ function Error() {
         {/* error content */}
         <div className="container max-w-md py-10 text-center flex flex-col justify-center items-center gap-3 rounded-md bg-primary p-4 md:p-6">
           <h1 className="uppercase text-5xl md:text-6xl font-semibold text-blue-500">
-            404
+            {code || 404}
           </h1>
 
-          <h3 className="font-medium text-2xl">Page not Found!</h3>
+          <h3 className="font-medium text-2xl">{title || "Page not Found!"}</h3>
           <p className="text-gray-400">
-            {`It's looking like you may have taken a wrong turn. Don't worry... it happens to the best of us. You might want to check your internet connection. Here's a little tip that might help you get back on track.`}
+            {message ||
+              `It's looking like you may have taken a wrong turn. Don't worry... it happens to the best of us. You might want to check your internet connection. Here's a little tip that might help you get back on track.`}
           </p>
           <Link to="/">
             <button className="px-4 py-2 text-white bg-blue-400 rounded-md my-transition hover:bg-blue-400/50 ring-1 ring-primary flex items-center gap-2">
@@ -38,4 +41,11 @@ function Error() {
   );
 }
 
+// prop validation
+
+Error.propTypes = {
+  code: PropTypes.number,
+  title: PropTypes.string,
+  message: PropTypes.string,
+};
 export default Error;
