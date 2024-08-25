@@ -10,7 +10,7 @@ function DesktopNavbar() {
   // apps mega menu active
   const [appsMegaMenu, setAppsMegaMenu] = useState(false);
 
-  // apps sub menu active
+  // apps mega menu active
   const [appsSubMenu, setAppsSubMenu] = useState(false);
 
   // tasks sub menu active
@@ -18,6 +18,15 @@ function DesktopNavbar() {
 
   // contacts sub menu active
   const [contactsSubMenu, setContactsSubMenu] = useState(false);
+
+  // pages mega menu active
+  const [pagesSubMenu, setPagesSubMenu] = useState(false);
+
+  //   utility sub menu active
+  const [utilitySubMenu, setUtilitySubMenu] = useState(false);
+
+  //   errors sub menu active
+  const [errorsSubMenu, setErrorsSubMenu] = useState(false);
 
   return (
     <>
@@ -36,9 +45,11 @@ function DesktopNavbar() {
             Dashboard
           </NavLink>
           <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <FaElementor></FaElementor>
-            UI Elements
-            <IoIosArrowDown></IoIosArrowDown>
+            <div className="flex items-center gap-3  my-transition hover:text-blue-400">
+              <FaElementor></FaElementor>
+              UI Elements
+              <IoIosArrowDown></IoIosArrowDown>
+            </div>
           </button>
           <button className="relative   text-text-color capitalize my-transition ">
             <div
@@ -218,14 +229,167 @@ function DesktopNavbar() {
             </ul>
           </button>
           <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <TbComponents></TbComponents>
-            Components
-            <IoIosArrowDown></IoIosArrowDown>
+            <div className="flex items-center gap-3  my-transition hover:text-blue-400">
+              <TbComponents></TbComponents>
+              Components
+              <IoIosArrowDown></IoIosArrowDown>
+            </div>
           </button>
-          <button className="flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
-            <SiPowerpages></SiPowerpages>
-            Pages
-            <IoIosArrowDown></IoIosArrowDown>
+          <button className="relative flex items-center gap-3   text-text-color capitalize my-transition hover:text-blue-400">
+            <div
+              onMouseOver={() => {
+                setPagesSubMenu(true);
+              }}
+              onMouseLeave={() => {
+                setPagesSubMenu(false);
+              }}
+              className="flex items-center gap-3  my-transition hover:text-blue-400"
+            >
+              <SiPowerpages></SiPowerpages>
+              Pages
+              <IoIosArrowDown></IoIosArrowDown>
+              {/* pages mega menu */}
+              <ul
+                onMouseOver={() => {
+                  setPagesSubMenu(true);
+                }}
+                onMouseLeave={() => {
+                  setPagesSubMenu(false);
+                }}
+                className={`${
+                  pagesSubMenu ? "top-[35px] visible" : "top-[70px] invisible"
+                } my-transition absolute  left-0 flex flex-col items-start bg-secondary rounded-md h-fit  w-[280px] ring-1 ring-text-color/20  *:w-full p-1`}
+              >
+                <li
+                  onMouseEnter={() => {
+                    setErrorsSubMenu(true);
+                  }}
+                  onMouseLeave={() => {
+                    setErrorsSubMenu(false);
+                  }}
+                  className="relative"
+                >
+                  <button className="relative px-5 py-3 text-text-color hover:bg-primary w-full flex items-center justify-between hover:text-blue-400 my-transition">
+                    Errors
+                    <IoIosArrowForward></IoIosArrowForward>
+                  </button>
+
+                  {/* sub menu */}
+                  <ul
+                    onMouseEnter={() => {
+                      setErrorsSubMenu(true);
+                    }}
+                    onMouseLeave={() => {
+                      setErrorsSubMenu(false);
+                    }}
+                    className={`${
+                      errorsSubMenu ? "visible top-0" : "invisible top-[30px]"
+                    } my-transition absolute -right-[76%] flex flex-col items-start bg-secondary rounded-md h-fit  w-[200px] ring-1 ring-text-color/20 overflow-hidden *:w-full p-1`}
+                  >
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Error - 404
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Error - 500
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+                <li
+                  onMouseEnter={() => {
+                    setUtilitySubMenu(true);
+                  }}
+                  onMouseLeave={() => {
+                    setUtilitySubMenu(false);
+                  }}
+                  className="relative"
+                >
+                  <button className="relative px-5 py-3 text-text-color hover:bg-primary w-full flex items-center justify-between hover:text-blue-400 my-transition">
+                    Utility
+                    <IoIosArrowForward></IoIosArrowForward>
+                  </button>
+
+                  {/* sub menu */}
+                  <ul
+                    onMouseEnter={() => {
+                      setUtilitySubMenu(true);
+                    }}
+                    onMouseLeave={() => {
+                      setUtilitySubMenu(false);
+                    }}
+                    className={`${
+                      utilitySubMenu ? "visible top-0" : "invisible top-[30px]"
+                    } my-transition absolute -right-[76%] flex flex-col items-start bg-secondary rounded-md h-fit  w-[200px] ring-1 ring-text-color/20 overflow-hidden *:w-full p-1`}
+                  >
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Pricing
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Timeline
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Invoice
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        FAQs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Gallery
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Maintanence
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="my-transition px-5 py-3 text-text-color hover:bg-primary w-full flex items-center"
+                      >
+                        Coming Soon
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </button>
         </ul>
       </nav>
