@@ -80,7 +80,7 @@ function Timeline() {
                   >
                     <div
                       className={`${
-                        ind % 2 === 0 ? "mr-5" : "ml-5"
+                        ind % 2 === 1 ? "mr-10" : "ml-10"
                       } bg-primary rounded-md p-4 md:p-6  space-y-2`}
                     >
                       <div>
@@ -95,6 +95,13 @@ function Timeline() {
                       className={`${
                         ind % 2 === 0 ? "-left-[10px]" : "-right-[10px]"
                       } size-5 bg-primary rounded-full absolute top-1/2 -translate-y-1/2 border-[5px] border-blue-400`}
+                    ></div>
+
+                    {/* timeline arrow */}
+                    <div
+                      className={`${
+                        ind % 2 === 0 ? "left-[30px]" : "right-[30px]"
+                      } size-8 bg-primary  absolute top-1/2 -translate-y-1/2 rotate-45`}
                     ></div>
                   </div>
                   {ind % 2 === 1 && <div></div>}
