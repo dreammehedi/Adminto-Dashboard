@@ -6,9 +6,7 @@ function PagesPagination() {
   const pathnameSplit = pathname.split("/");
   const middlePathName = pathnameSplit[pathnameSplit.length - 2];
   const currentPathName = pathnameSplit[pathnameSplit.length - 1];
-
   const middlePathNameUpdate = middlePathName.split("-").join(" ");
-  // console.log(middlePathNameUpdate.join(" "));
 
   return (
     <>
@@ -17,7 +15,7 @@ function PagesPagination() {
         <div className="container py-4 md:py-5 flex justify-between items-center">
           {/* navigate url */}
           <h3 className="text-white font-semibold text-xl capitalize">
-            {currentPathName}
+            {pathname === "/" ? "Dashboard" : currentPathName}
           </h3>
 
           {/* pagination url */}
@@ -25,13 +23,19 @@ function PagesPagination() {
             <li>
               <Link to={"/"}>Adminto</Link>
             </li>
-            <li>{`>`}</li>
-            <li>
-              <span className="capitalize">{middlePathNameUpdate}</span>
-            </li>
+
+            {pathname !== "/" && (
+              <>
+                <li>{`>`}</li>
+                <li>
+                  <span className="capitalize">{middlePathNameUpdate}</span>
+                </li>
+              </>
+            )}
+
             <li>{`>`}</li>
             <li className="text-text-color cursor-default capitalize">
-              {currentPathName}
+              {pathname === "/" ? "Dashboard" : currentPathName}
             </li>
           </ul>
         </div>

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { lazy, useState } from "react";
+import { useState } from "react";
 import { FaElementor } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
@@ -103,6 +103,7 @@ function DropdownMenu({ label, icon: Icon, items }) {
 
 // render component
 function DesktopNavbar() {
+  // apps mega menu
   const appsItems = [
     { label: "Calendar", to: "/apps/calendar" },
     { label: "Chat", to: "/apps/chat" },
@@ -127,6 +128,7 @@ function DesktopNavbar() {
     },
   ];
 
+  // pages mega menu
   const pagesItems = [
     {
       label: "Errors",
@@ -148,7 +150,8 @@ function DesktopNavbar() {
       ],
     },
   ];
-  const components = [
+  // components mega menu
+  const componentsItems = [
     { label: "Widgets", to: "/component/widgets" },
     {
       label: "Extended Ui",
@@ -239,11 +242,11 @@ function DesktopNavbar() {
       label: "Menu Levels",
       subItems: [
         {
-          label: "Level1.1",
+          label: "Level 1.1",
           to: "/component/level1.1",
         },
         {
-          label: "level1.2",
+          label: "level 1.2",
           to: "/component/level1.2",
         },
       ],
@@ -266,7 +269,11 @@ function DesktopNavbar() {
         </NavLink>
         <DropdownMenu label="UI Elements" icon={FaElementor} items={[]} />
         <DropdownMenu label="Apps" icon={FaElementor} items={appsItems} />
-        <DropdownMenu label="Components" icon={TbComponents} items={[]} />
+        <DropdownMenu
+          label="Components"
+          icon={TbComponents}
+          items={componentsItems}
+        />
         <DropdownMenu label="Pages" icon={SiPowerpages} items={pagesItems} />
       </ul>
     </nav>
