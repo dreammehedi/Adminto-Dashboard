@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 
 function PricingCard({ pricingData }) {
   const { packageName, price, offers, popular } = pricingData;
-  console.log(popular);
 
   return (
     <>
