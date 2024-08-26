@@ -22,7 +22,7 @@ function Header() {
 
   // mobile navbar
   const [mobileNavbar, setMobileNavbar] = useState(false);
-console.log(mobileNavbar);
+
   return (
     <>
       <div className="w-full sticky top-0 z-[99999]">
