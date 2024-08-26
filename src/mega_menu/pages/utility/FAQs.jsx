@@ -73,16 +73,6 @@ const FAQs = () => {
                 Send us a tweet
               </button>
             </div>
-
-            {/* {isOpen && (
-            <div className="p-6 space-y-4 border border-t-header-bg border-gray-600 transition-all duration-300 ease-in-out">
-              {content.map((text, index) => (
-                <p key={index} className="text-text-color text-sm">
-                  {text}
-                </p>
-              ))}
-            </div>
-          )} */}
           </div>
 
           {/* faq accordion section */}
@@ -92,30 +82,31 @@ const FAQs = () => {
               const { title, content } = accordion;
               const isOpen = ind === accordionIndex;
               return (
-                <>
-                  <div key={ind} className="h-fit my-transition">
-                    <h1
-                      onClick={() => {
-                        console.log(ind);
-                        setTimeout(() => {
-                          setAccordionIndex(ind === accordionIndex ? -1 : ind);
-                        }, 500);
-                      }}
-                      className="bg-[#3a4250] font-bold p-3 text-white flex items-center justify-between cursor-pointer rounded-md"
-                    >
-                      {title}
-                      <span className="text-xl cursor-pointer">
-                        {isOpen ? "-" : "+"}
-                      </span>
-                    </h1>
+                <div key={ind} className="max-h-full my-transition w-full">
+                  <h1
+                    onClick={() => {
+                      setTimeout(() => {
+                        setAccordionIndex(ind === accordionIndex ? -1 : ind);
+                      }, 500);
+                    }}
+                    className="bg-[#3a4250] font-bold p-3 text-white flex items-center justify-between cursor-pointer rounded-md"
+                  >
+                    {title}
+                    <span className="text-xl cursor-pointer">
+                      {isOpen ? "-" : "+"}
+                    </span>
+                  </h1>
 
-                    {isOpen && (
-                      <p className="p-4 my-4 text-sm text-text-color space-y-3 border border-gray-600 my-transition rounded-md">
-                        {content}
-                      </p>
-                    )}
-                  </div>
-                </>
+                  {isOpen && (
+                    <p
+                      className={`${
+                        isOpen ? "visible h-fit" : "invisible h-0"
+                      } p-4 my-transition my-4 text-sm text-text-color space-y-3 border border-gray-600 my-transition rounded-md w-full`}
+                    >
+                      {content}
+                    </p>
+                  )}
+                </div>
               );
             })}
           </div>
