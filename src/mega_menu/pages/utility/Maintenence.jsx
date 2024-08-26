@@ -52,20 +52,21 @@ function Maintenence() {
         {/* notification message */}
 
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-6">
-          {maintenenceNotification.map((notification) => {
+          {maintenenceNotification.map((notification, ind) => {
             const { title, message, icon } = notification;
             const IconComponent = Icons[icon];
             return (
-              <>
-                <div className="bg-primary rounded-md p-6 md:p-8 lg:p-10 flex flex-col justify-center items-center text-center gap-3">
-                  <div className="flex justify-center items-center bg-blue-400/20 rounded-full p-3">
-                    <IconComponent className="text-blue-400 text-4xl"></IconComponent>
-                  </div>
-
-                  <h3 className="text-white font-medium text-xl">{title}</h3>
-                  <p className="text-text-color text-xs">{message}</p>
+              <div
+                key={ind}
+                className="bg-primary rounded-md p-6 md:p-8 lg:p-10 flex flex-col justify-center items-center text-center gap-3"
+              >
+                <div className="flex justify-center items-center bg-blue-400/20 rounded-full p-3">
+                  <IconComponent className="text-blue-400 text-4xl"></IconComponent>
                 </div>
-              </>
+
+                <h3 className="text-white font-medium text-xl">{title}</h3>
+                <p className="text-text-color text-xs">{message}</p>
+              </div>
             );
           })}
         </div>

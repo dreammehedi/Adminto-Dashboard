@@ -103,6 +103,7 @@ function DropdownMenu({ label, icon: Icon, items }) {
 
 // render component
 function DesktopNavbar() {
+  // apps mega menu
   const appsItems = [
     { label: "Calendar", to: "/apps/calendar" },
     { label: "Chat", to: "/apps/chat" },
@@ -127,6 +128,7 @@ function DesktopNavbar() {
     },
   ];
 
+  // pages mega menu
   const pagesItems = [
     {
       label: "Errors",
@@ -149,6 +151,23 @@ function DesktopNavbar() {
     },
   ];
 
+  // components mega menu
+  const componentsItems = [
+    { label: "Widgets", to: "/components/widgets" },
+    {
+      label: "Extended Ui",
+      subItems: [
+        { label: "Pricing", to: "/components/pricing" },
+        { label: "Timeline", to: "/components/timeline" },
+        { label: "Invoice", to: "/components/invoice" },
+        { label: "FAQs", to: "/components/FAQs" },
+        { label: "Gallery", to: "/components/gallery" },
+        { label: "Maintenance", to: "/components/maintenence" },
+        { label: "Coming Soon", to: "/components/comingsoon" },
+      ],
+    },
+  ];
+
   return (
     <nav className="hidden lg:block bg-primary">
       <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
@@ -165,7 +184,11 @@ function DesktopNavbar() {
         </NavLink>
         <DropdownMenu label="UI Elements" icon={FaElementor} items={[]} />
         <DropdownMenu label="Apps" icon={FaElementor} items={appsItems} />
-        <DropdownMenu label="Components" icon={TbComponents} items={[]} />
+        <DropdownMenu
+          label="Components"
+          icon={TbComponents}
+          items={componentsItems}
+        />
         <DropdownMenu label="Pages" icon={SiPowerpages} items={pagesItems} />
       </ul>
     </nav>

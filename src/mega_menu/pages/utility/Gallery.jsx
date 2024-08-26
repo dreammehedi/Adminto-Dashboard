@@ -64,27 +64,25 @@ function Gallery() {
             </li>
             {uniqueCategories.map((category, ind) => {
               return (
-                <>
-                  <li
-                    onClick={() => {
-                      setSelectedCategory(category);
-                      setFilterCategory(
-                        galleryData.filter((item) => item.category === category)
-                      );
-                    }}
-                    key={ind}
+                <li
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setFilterCategory(
+                      galleryData.filter((item) => item.category === category)
+                    );
+                  }}
+                  key={ind}
+                >
+                  <button
+                    className={
+                      selectedCategory === category
+                        ? "text-blue-400"
+                        : "text-white"
+                    }
                   >
-                    <button
-                      className={
-                        selectedCategory === category
-                          ? "text-blue-400"
-                          : "text-white"
-                      }
-                    >
-                      {category}
-                    </button>
-                  </li>
-                </>
+                    {category}
+                  </button>
+                </li>
               );
             })}
           </ul>
@@ -94,30 +92,26 @@ function Gallery() {
             {filterCategory.map((gallery, ind) => {
               const { title, description, image, category } = gallery;
               return (
-                <>
-                  <div
-                    key={ind}
-                    className="bg-primary rounded-md p-4 h-fit my-transition"
-                  >
-                    {/* image */}
-                    <img
-                      className="rounded-md p-1 object-fill w-full h-auto min-h-[120px] my-transition hover:scale-[1.03] hover:cursor-pointer"
-                      src={image}
-                      alt={title}
-                    />
-                    {/* content */}
-                    <div className="flex flex-col space-y-2 place-items-center text-center py-2 px-4 my-transition">
-                      <h5 className="uppercase text-xs text-blue-400 font-bold font-poppins">
-                        {category}
-                      </h5>
-                      <h4 className="font-medium text-lg text-white">
-                        {title}
-                      </h4>
+                <div
+                  key={ind}
+                  className="bg-primary rounded-md p-4 h-fit my-transition"
+                >
+                  {/* image */}
+                  <img
+                    className="rounded-md p-1 object-fill w-full h-auto min-h-[120px] my-transition hover:scale-[1.03] hover:cursor-pointer"
+                    src={image}
+                    alt={title}
+                  />
+                  {/* content */}
+                  <div className="flex flex-col space-y-2 place-items-center text-center py-2 px-4 my-transition">
+                    <h5 className="uppercase text-xs text-blue-400 font-bold font-poppins">
+                      {category}
+                    </h5>
+                    <h4 className="font-medium text-lg text-white">{title}</h4>
 
-                      <p className="text-text-color text-sm">{description}</p>
-                    </div>
+                    <p className="text-text-color text-sm">{description}</p>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
