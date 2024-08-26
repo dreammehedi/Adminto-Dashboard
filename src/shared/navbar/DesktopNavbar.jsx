@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { FaElementor } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
@@ -150,6 +150,93 @@ function DesktopNavbar() {
       ],
     },
   ];
+  const components = [
+    { label: "Widgets", to: "/component/widgets" },
+    { label: "Extended Ui", 
+      subItems: [
+        {label:"Nestable List", to: "/component/nestableList"},
+        {label:"Range Sliders", to: "/component/rangeSliders"},
+        {label:"Sweet Alert ", to: "/component/sweetAlert"},
+        {label:"Tour Page ", to: "/component/tourPage"},
+        {label:"Tree View", to: "/component/treeView"},
+      ]
+     },
+     {
+      label: "Forms",
+      subItems:[
+        {label:"General Elements", to : "/component/generalElement"},
+        {label:"Form Advanced", to : "/component/formAdvanced"},
+        {label:"Validation", to : "/component/validation"},
+        {label:"Wizard", to : "/component/wizard"},
+        {label:"File Uploads", to : "/component/fileUploads"},
+        {label:"Editors", to : "/component/editors"},
+      ]
+     },
+     {
+      label : "Chats",
+      subItems:[
+        {
+          label: "Apex Charts", to : "/component/apexCharts"
+        },
+        {
+          label: "Chart Js", to : "/component/chartJs"
+        },
+      ]
+     },
+     {
+      label : "Tables",
+      subItems:[
+        {
+          label: "Basic Tables", to : "/component/basicTables"
+        },
+        {
+          label: "Advanced Tables", to : "/component/advancedTables"
+        },
+      ]
+     },
+     {
+      label : "Icons",
+      subItems:[
+        {
+          label: "Feather Icons", to : "/component/featherIcons"
+        },
+        {
+          label: "Material Design Icons", to : "/component/materialDesignIcons"
+        },
+        {
+          label: "Dripicons", to : "/component/dripicons"
+        },
+        {
+          label: "Font Awesome 5", to : "/component/fontAwesome5"
+        },
+        {
+          label: "Themify", to : "/component/themify"
+        },
+      ]
+     },
+     {
+      label : "Maps",
+      subItems:[
+        {
+          label: "Google Maps", to : "/component/googleMaps"
+        },
+        {
+          label: "Vector Maps", to : "/component/vectorMaps"
+        },
+      ]
+     },
+     {
+      label : "Menu Levels",
+      subItems:[
+        {
+          label: "Level1.1", to : "/component/level1.1"
+        },
+        {
+          label: "level1.2", to : "/component/level1.2"
+        },
+      ]
+     }
+  ]
 
   // components mega menu
   const componentsItems = [
