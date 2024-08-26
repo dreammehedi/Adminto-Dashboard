@@ -25,7 +25,7 @@ function Error({ code, title, message }) {
           </h1>
 
           <h3 className="font-medium text-2xl">{title || "Page not Found!"}</h3>
-          <p className="text-gray-400">
+          <p className="text-text-color">
             {message ||
               `It's looking like you may have taken a wrong turn. Don't worry... it happens to the best of us. You might want to check your internet connection. Here's a little tip that might help you get back on track.`}
           </p>

@@ -27,9 +27,7 @@ function PagesPagination() {
             </li>
             <li>{`>`}</li>
             <li>
-              <Link to={"/extra-pages/paricing"} className="capitalize">
-                {middlePathNameUpdate}
-              </Link>
+              <span className="capitalize">{middlePathNameUpdate}</span>
             </li>
             <li>{`>`}</li>
             <li className="text-text-color cursor-default capitalize">

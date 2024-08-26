@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardMainLayout from "../layout/DashboardMainLayout";
 import Calendar from "../mega_menu/apps/Calendar";
 import Error500 from "../mega_menu/pages/errors/Error500";
+import ComingSoon from "../mega_menu/pages/utility/ComingSoon";
 import Chat from "./../mega_menu/apps/Chat";
 import MembersList from "./../mega_menu/apps/contacts/MembersList";
 import Profile from "./../mega_menu/apps/contacts/Profile";
@@ -9,7 +10,6 @@ import Inbox from "./../mega_menu/apps/email/Inbox";
 import Projects from "./../mega_menu/apps/Projects";
 import Detailes from "./../mega_menu/apps/tasks/Detailes";
 import KanbanBoard from "./../mega_menu/apps/tasks/KanbanBoard";
-import ComingSoon from "./../mega_menu/pages/utility/ComingSoon";
 import FAQs from "./../mega_menu/pages/utility/FAQs";
 import Gallery from "./../mega_menu/pages/utility/Gallery";
 import Invoice from "./../mega_menu/pages/utility/Invoice";
@@ -93,14 +93,6 @@ const router = createBrowserRouter([
         path: "/extra-pages/gallery",
         element: <Gallery></Gallery>,
       },
-      {
-        path: "/extra-pages/maintenence",
-        element: <Maintenence></Maintenence>,
-      },
-      {
-        path: "/extra-pages/comingsoon",
-        element: <ComingSoon></ComingSoon>,
-      },
     ],
   },
 
@@ -133,6 +125,18 @@ const router = createBrowserRouter([
         element: <Pricing></Pricing>,
       },
     ],
+  },
+
+  // maintenence router
+  {
+    path: "/extra-pages/maintenence",
+    element: <Maintenence></Maintenence>,
+  },
+
+  // coming soon router
+  {
+    path: "/extra-pages/comingsoon",
+    element: <ComingSoon></ComingSoon>,
   },
 ]);
 
