@@ -61,6 +61,8 @@ const timeLineData = [
 ];
 
 function Timeline() {
+  // timeline colors
+  const colors = ["#D32F2F", "#1976D2", "#388E3C", "#FBC02D", "#7B1FA2"];
   return (
     <>
       {/* timeline page */}
@@ -70,6 +72,7 @@ function Timeline() {
           <div className="w-full table table-fixed relative ">
             {timeLineData.map((timelineItem, ind) => {
               const { time, date, event } = timelineItem;
+              const color = colors[ind % colors.length];
               return (
                 <div key={ind} className={`table-row`}>
                   {ind % 2 === 0 && <div></div>}
@@ -84,7 +87,9 @@ function Timeline() {
                       } bg-primary rounded-md p-4 md:p-6  space-y-2`}
                     >
                       <div>
-                        <p className="text-red-700 font-semibold">{time}</p>
+                        <p style={{ color }} className={`font-semibold`}>
+                          {time}
+                        </p>
                         <span className="text-xs">{date}</span>
                       </div>
                       <p className="text-sm">{event}</p>
@@ -92,9 +97,10 @@ function Timeline() {
 
                     {/* timeline circle */}
                     <div
+                      style={{ borderColor: color }}
                       className={`${
-                        ind % 2 === 0 ? "-left-[10px]" : "-right-[10px]"
-                      } size-5 bg-primary rounded-full absolute top-1/2 -translate-y-1/2 border-[5px] border-blue-400`}
+                        ind % 2 === 0 ? "-left-[10px] " : "-right-[10px]"
+                      }  size-5 bg-primary rounded-full absolute top-1/2 -translate-y-1/2 border-[5px] `}
                     ></div>
 
                     {/* timeline arrow */}
