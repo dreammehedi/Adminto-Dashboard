@@ -26,7 +26,7 @@ function SubMenu({ label, icon: Icon, subItems }) {
         <ul
           className={`${
             activeSubMenu ? "visible top-0" : "invisible top-[30px]"
-          } my-transition absolute -right-[76%] flex flex-col items-start bg-secondary rounded-md h-fit w-[200px] ring-1 ring-text-color/20 overflow-hidden *:w-full p-1`}
+          } my-transition absolute -right-[110%] flex flex-col items-start bg-secondary rounded-md h-fit w-auto lg:w-[180px] ring-1 ring-text-color/20 overflow-hidden *:w-full p-1`}
         >
           {subItems.map((item) => (
             <li key={item.label}>
@@ -69,7 +69,7 @@ function DropdownMenu({ label, icon: Icon, items }) {
         <ul
           className={`${
             activeMegaMenu ? "top-[35px] visible" : "top-[70px] invisible"
-          } my-transition absolute left-0 flex flex-col items-start bg-secondary rounded-md h-fit w-[280px] ring-1 ring-text-color/20 *:w-full p-1`}
+          } my-transition absolute left-0 flex flex-col items-start bg-secondary rounded-md h-fit w-auto lg:w-[180px] ring-1 ring-text-color/20 *:w-full p-1`}
         >
           {items.map((item) =>
             item.subItems ? (
@@ -151,7 +151,7 @@ function DesktopNavbar() {
 
   return (
     <nav className="hidden lg:block bg-primary">
-      <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal overflow-hidden">
+      <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
         <NavLink
           to={"/"}
           className={({ isActive }) =>
