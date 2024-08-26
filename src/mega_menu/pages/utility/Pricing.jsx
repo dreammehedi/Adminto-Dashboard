@@ -1,26 +1,5 @@
-import PricingCard from "../../../components/pricingCard/PricingCard";
-
-function Pricing() {
-  return (
-    <>
-      {/* pricing page */}
-      <section className="bg-secondary py-6">
-        <div className="flex flex-wrap max-w-screen-xl mx-auto justify-center gap-6 text-center">
-          {CardData &&
-            CardData.map((card) => (
-              <div key={card.id} className="w-full lg:w-1/5">
-                <PricingCard card={card}></PricingCard>
-              </div>
-            ))}
-        </div>
-      </section>
-    </>
-  );
-}
-
-export default Pricing;
-
-const CardData = [
+import PricingCard from "../../../components/pricing/PricingCard";
+const pricingData = [
   {
     id: 1,
     packageName: "Basic",
@@ -87,3 +66,27 @@ const CardData = [
     ],
   },
 ];
+
+function Pricing() {
+  return (
+    <>
+      {/* pricing page */}
+      <section className="bg-secondary pb-6">
+        <div className="container flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8 text-center">
+          {pricingData.map((pricingData) => {
+            return (
+              <div
+                className="w-[80%] md:max-w-[200px] lg:max-w-[240px] bg-primary rounded-md p-4 md:p-6 lg:p-8 relative z-10 overflow-hidden "
+                key={pricingData.id}
+              >
+                <PricingCard pricingData={pricingData}></PricingCard>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Pricing;
