@@ -73,9 +73,9 @@ function DropdownMenu({ label, icon: Icon, items }) {
         <ul
           className={`${
             activeMegaMenu ? "top-[35px] visible" : "top-[70px] invisible"
-          } my-transition absolute left-0  items-start bg-secondary rounded-md h-fit w-auto ${
+          } my-transition absolute  z-[99999] left-0  items-start bg-secondary rounded-md h-fit w-auto min-w-[200px] ${
             isUIElementsLabel
-              ? "lg:w-[600px] grid grid-cols-3"
+              ? "w-[400px] lg:w-[600px] grid grid-cols-3"
               : "lg:w-[180px] flex flex-col"
           }  ring-1 ring-text-color/20 *:w-full p-1`}
         >
@@ -110,7 +110,7 @@ function DropdownMenu({ label, icon: Icon, items }) {
 }
 
 // render component
-function DesktopNavbar() {
+function DesktopNavbar({ mobileNavbar }) {
   // apps mega menu
   const appsItems = [
     { label: "Calendar", to: "/apps/calendar" },
@@ -335,8 +335,12 @@ function DesktopNavbar() {
     },
   ];
   return (
-    <nav className="hidden lg:block bg-primary">
-      <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
+    <nav className="bg-primary">
+      <ul
+        className={`${
+          mobileNavbar && "!flex"
+        } hidden container py-3 lg:flex flex-col lg:flex-row justify-start items-start lg:items-center gap-4 md:gap-6 text-sm font-normal`}
+      >
         <NavLink
           to={"/"}
           className={({ isActive }) =>
@@ -366,6 +370,10 @@ function DesktopNavbar() {
 }
 
 // Prop validation
+
+DesktopNavbar.propTypes = {
+  mobileNavbar: PropTypes.bool.isRequired,
+};
 DropdownMenu.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.func.isRequired,

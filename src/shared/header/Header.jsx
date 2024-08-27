@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { FaElementor, FaRegUser } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
 import {
   IoIosArrowDown,
   IoIosNotifications,
   IoIosSearch,
 } from "react-icons/io";
-import { MdDashboard, MdLockOpen, MdSettingsSuggest } from "react-icons/md";
+import { MdLockOpen, MdSettingsSuggest } from "react-icons/md";
 import { PiArrowCounterClockwiseBold } from "react-icons/pi";
-import { NavLink } from "react-router-dom";
 import DesktopNavbar from "../navbar/DesktopNavbar";
 import Logo from "./Logo";
 
@@ -162,57 +161,8 @@ function Header() {
           </div>
         </header>
 
-        {/* mobile & tablet navbar */}
-        <nav
-          className={`${
-            mobileNavbar ? "visible top-[70px]" : "invisible top-[100px]"
-          } my-transition lg:hidden bg-primary w-full h-fit absolute left-0`}
-        >
-          <ul className="container py-3 flex flex-col gap-4 md:gap-6 text-sm font-normal h-fit">
-            <NavLink
-              to={"/"}
-              className={({ isActive }) => {
-                return isActive
-                  ? "flex items-center gap-3 text-blue-400 capitalize"
-                  : "flex items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400";
-              }}
-            >
-              <MdDashboard></MdDashboard>
-              Dashboard
-            </NavLink>
-            <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
-              <div className="flex place-items-center gap-3">
-                <FaElementor></FaElementor>
-                UI Elements
-              </div>
-              <IoIosArrowDown></IoIosArrowDown>
-            </button>
-            <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
-              <div className="flex place-items-center gap-3">
-                <FaElementor></FaElementor>
-                Apps
-              </div>
-              <IoIosArrowDown></IoIosArrowDown>
-            </button>
-            <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
-              <div className="flex place-items-center gap-3">
-                <FaElementor></FaElementor>
-                Components
-              </div>
-              <IoIosArrowDown></IoIosArrowDown>
-            </button>
-            <button className="flex justify-between  items-center gap-3 text-text-color capitalize my-transition hover:text-blue-400">
-              <div className="flex place-items-center gap-3">
-                <FaElementor></FaElementor>
-                Pages
-              </div>
-              <IoIosArrowDown></IoIosArrowDown>
-            </button>
-          </ul>
-        </nav>
-
-        {/* desktoop navbar */}
-        <DesktopNavbar></DesktopNavbar>
+        {/* navbar */}
+        <DesktopNavbar mobileNavbar={mobileNavbar}></DesktopNavbar>
       </div>
     </>
   );
