@@ -1,91 +1,135 @@
+import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+const dashboardChartData = [
+  {
+    chartType: "donut",
+    title: "Daily Sales",
+    options: {},
+    series: [44, 55, 13, 43],
+    actionIconData: [
+      "Action",
+      "Another Action",
+      "Something Else",
+      "Separated Link",
+    ],
+  },
+  {
+    chartType: "bar",
+    title: "Statistic",
+    options: {
+      plotOptions: {
+        bar: {
+          borderRadius: 5,
+          dataLabels: {
+            position: "top",
+            fontSize: "14px",
+          },
+        },
+      },
+      xaxis: {
+        categories: ["2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+      },
+    },
+    series: [
+      {
+        data: [12.3, 23.1, 30.1, 33.8, 10.5, 15.2, 8.5],
+      },
+    ],
+    actionIconData: [
+      "Action",
+      "Another Action",
+      "Something Else",
+      "Separated Link",
+    ],
+  },
+  {
+    chartType: "line",
+    title: "Total Revenue",
+
+    options: {
+      xaxis: {
+        categories: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+      },
+    },
+    series: [
+      {
+        name: "Series A",
+        data: [45, 52, 38, 24, 33, 26, 21],
+      },
+      {
+        name: "Series B",
+        data: [35, 41, 62, 42, 13, 18, 29],
+      },
+    ],
+    categories: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    actionIconData: [
+      "Action",
+      "Another Action",
+      "Something Else",
+      "Separated Link",
+    ],
+  },
+];
 
 function DashboardChart() {
+  // active action button
+  const [activeActionButton, setActiveActionButton] = useState(-1);
   return (
     <>
       {/* daily sales,  statistic, total revenue */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-        {/* daily sales chart */}
-        <div className="p-4 md:p-6 rounded-md bg-primary space-y-6">
-          {/* title */}
-          <h3 className="text-white font-semibold text-sm">Daily Sales</h3>
-          {/* chart */}
+        {dashboardChartData.map((chartData, ind) => {
+          const { title, chartType, series, options, actionIconData } =
+            chartData;
+          const isOpen = ind === activeActionButton;
+          return (
+            <div
+              key={ind}
+              className="p-4 md:p-6 rounded-md bg-primary space-y-6"
+            >
+              {/* title */}
+              <div className="flex justify-between items-center gap-3 relative">
+                <h3 className="text-white font-semibold text-sm">{title}</h3>
+                <button
+                  onClick={() => {
+                    setActiveActionButton(
+                      ind === activeActionButton ? false : ind
+                    );
+                  }}
+                  className="text-text-color text-lg"
+                >
+                  <BiDotsVerticalRounded></BiDotsVerticalRounded>
+                </button>
 
-          <ReactApexChart
-            options={{}}
-            series={[44, 55, 13, 43]}
-            type="donut"
-            width={"95%"}
-          />
-        </div>
+                {/* action link */}
+                <ul
+                  className={`${
+                    isOpen ? "top-[25px] visible" : "top-[50px] invisible"
+                  } my-transition absolute z-30  right-0 flex flex-col bg-primary rounded-md h-fit w-auto lg:w-[180px] ring-1 ring-text-color/20 *:w-full p-1 text-sm`}
+                >
+                  {actionIconData.map((actionLink, ind) => {
+                    return (
+                      <li key={ind}>
+                        <button className="my-transition px-5 py-2 text-text-color hover:bg-primary hover:text-blue-400 w-full flex items-start text-left justify-start">
+                          {actionLink}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
 
-        {/* statistic chart */}
-        <div className="p-4 md:p-6 rounded-md bg-primary space-y-6">
-          {/* title */}
-          <h3 className="text-white font-semibold text-sm">Statistic</h3>
-          {/* chart */}
-
-          <ReactApexChart
-            options={{
-              plotOptions: {
-                bar: {
-                  borderRadius: 5,
-                  dataLabels: {
-                    position: "top",
-                    fontSize: "14px",
-                  },
-                },
-              },
-              xaxis: {
-                categories: [
-                  "2018",
-                  "2019",
-                  "2020",
-                  "2021",
-                  "2022",
-                  "2023",
-                  "2024",
-                ],
-              },
-            }}
-            series={[
-              {
-                data: [12.3, 23.1, 30.1, 33.8, 10.5, 15.2, 8.5],
-              },
-            ]}
-            type="bar"
-            height={350}
-            width={"100%"}
-          />
-        </div>
-
-        {/* total revenue chart */}
-        <div className="p-4 md:p-6 rounded-md bg-primary space-y-6">
-          {/* title */}
-          <h3 className="text-white font-semibold text-sm">Total Revenue</h3>
-          {/* chart */}
-
-          <ReactApexChart
-            options={{
-              xaxis: {
-                categories: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
-              },
-            }}
-            series={[
-              {
-                name: "Series A",
-                data: [45, 52, 38, 24, 33, 26, 21],
-              },
-              {
-                name: "Series B",
-                data: [35, 41, 62, 42, 13, 18, 29],
-              },
-            ]}
-            type="line"
-            width={"100%"}
-            height={350}
-          />
-        </div>
+              {/* chart */}
+              <ReactApexChart
+                options={options}
+                series={series}
+                type={chartType}
+                width={"95%"}
+              />
+            </div>
+          );
+        })}
       </section>
     </>
   );
