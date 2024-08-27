@@ -75,7 +75,7 @@ function DashboardTop() {
                 <ul
                   className={`${
                     isOpen ? "top-[25px] visible" : "top-[50px] invisible"
-                  } my-transition absolute z-30  right-0 flex flex-col bg-primary rounded-md h-fit w-auto lg:w-[180px] ring-1 ring-text-color/20 *:w-full p-1`}
+                  } my-transition absolute z-30  right-0 flex flex-col bg-primary rounded-md h-fit w-auto lg:w-[180px] ring-1 ring-text-color/20 *:w-full p-1 text-sm`}
                 >
                   {actionIconData.map((actionLink, ind) => {
                     return (
