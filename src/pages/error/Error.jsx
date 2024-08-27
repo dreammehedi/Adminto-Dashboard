@@ -19,7 +19,7 @@ function Error({ code, title, message }) {
         </div>
 
         {/* error content */}
-        <div className="container max-w-md py-10 text-center flex flex-col justify-center items-center gap-3 rounded-md bg-primary p-4 md:p-6">
+        <div className="container w-[90%] max-w-md py-10 text-center flex flex-col justify-center items-center gap-3 rounded-md bg-primary p-4 md:p-6">
           <h1 className="uppercase text-5xl md:text-6xl font-semibold text-blue-500">
             {code || 404}
           </h1>

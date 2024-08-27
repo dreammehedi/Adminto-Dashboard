@@ -75,7 +75,7 @@ function DropdownMenu({ label, icon: Icon, items }) {
             activeMegaMenu ? "top-[35px] visible" : "top-[70px] invisible"
           } my-transition absolute  z-[99999] left-0  items-start bg-secondary rounded-md h-fit w-auto min-w-[200px] ${
             isUIElementsLabel
-              ? "w-[400px] lg:w-[600px] grid grid-cols-3"
+              ? "!w-[400px] lg:w-[600px] grid grid-cols-3"
               : "lg:w-[180px] flex flex-col"
           }  ring-1 ring-text-color/20 *:w-full p-1`}
         >
