@@ -50,7 +50,11 @@ function SubMenu({ label, icon: Icon, subItems }) {
 
 // main dropdown menu component
 function DropdownMenu({ label, icon: Icon, items }) {
+  // active mega menu
   const [activeMegaMenu, setActiveMegaMenu] = useState(false);
+
+  // check label is ui elements
+  const isUIElementsLabel = label === "UI Elements";
 
   return (
     <div
@@ -69,7 +73,11 @@ function DropdownMenu({ label, icon: Icon, items }) {
         <ul
           className={`${
             activeMegaMenu ? "top-[35px] visible" : "top-[70px] invisible"
-          } my-transition absolute left-0 flex flex-col items-start bg-secondary rounded-md h-fit w-auto lg:w-[180px] ring-1 ring-text-color/20 *:w-full p-1`}
+          } my-transition absolute left-0  items-start bg-secondary rounded-md h-fit w-auto ${
+            isUIElementsLabel
+              ? "lg:w-[600px] grid grid-cols-3"
+              : "lg:w-[180px] flex flex-col"
+          }  ring-1 ring-text-color/20 *:w-full p-1`}
         >
           {items.map((item) =>
             item.subItems ? (
@@ -127,7 +135,6 @@ function DesktopNavbar() {
       ],
     },
   ];
-
   // pages mega menu
   const pagesItems = [
     {
@@ -252,7 +259,81 @@ function DesktopNavbar() {
       ],
     },
   ];
-
+  // Ui Elements mega menu
+  const uiElementsItems = [
+    {
+      label: "Buttons",
+      to: "/uiElements/buttons",
+    },
+    {
+      label: "NOtifications",
+      to: "/uiElements/notification",
+    },
+    {
+      label: "Embed Video",
+      to: "/uiElements/notifications",
+    },
+    {
+      label: "Cards",
+      to: "/uiElements/cards",
+    },
+    {
+      label: "Off Canvas",
+      to: "/uiElements/offCanvas",
+    },
+    {
+      label: "Dropdowns",
+      to: "/uiElements/dropdowns",
+    },
+    {
+      label: "Avatars",
+      to: "/uiElements/avatars",
+    },
+    {
+      label: "Placeholders",
+      to: "/uiElements/placeholders",
+    },
+    {
+      label: "Tooltips & Popovers",
+      to: "/uiElements/toolitpsPopovers",
+    },
+    {
+      label: "Tabs & Accordions",
+      to: "/uiElements/tapsAccordions",
+    },
+    {
+      label: "Spinners",
+      to: "/uiElements/spinners",
+    },
+    {
+      label: "General Ui",
+      to: "/uiElements/generalUi",
+    },
+    {
+      label: "Modals",
+      to: "/uiElements/modals",
+    },
+    {
+      label: "Images",
+      to: "/uiElements/images",
+    },
+    {
+      label: "Typography",
+      to: "/uiElements/typography",
+    },
+    {
+      label: "Progress",
+      to: "/uiElements/progress",
+    },
+    {
+      label: "Carousel",
+      to: "/uiElements/carousel",
+    },
+    {
+      label: "Grid",
+      to: "/uiElements/grid",
+    },
+  ];
   return (
     <nav className="hidden lg:block bg-primary">
       <ul className="container py-3 flex justify-start items-center gap-4 md:gap-6 text-sm font-normal">
@@ -267,7 +348,11 @@ function DesktopNavbar() {
           <MdDashboard />
           Dashboard
         </NavLink>
-        <DropdownMenu label="UI Elements" icon={FaElementor} items={[]} />
+        <DropdownMenu
+          label="UI Elements"
+          icon={FaElementor}
+          items={uiElementsItems}
+        />
         <DropdownMenu label="Apps" icon={FaElementor} items={appsItems} />
         <DropdownMenu
           label="Components"
