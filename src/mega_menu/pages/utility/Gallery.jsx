@@ -1,34 +1,34 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const galleryData = [
   {
     image:
-      "https://i.ibb.co/mBJP91S/elegant-beautiful-sunset-evening-scene-background-1055-17736.jpg",
-    title: "Sunset Over the Mountains",
-    category: "Natural",
+      'https://i.ibb.co/mBJP91S/elegant-beautiful-sunset-evening-scene-background-1055-17736.jpg',
+    title: 'Sunset Over the Mountains',
+    category: 'Natural',
     description:
-      "A breathtaking sunset view with vibrant colors over the mountain range.",
+      'A breathtaking sunset view with vibrant colors over the mountain range.',
   },
   {
-    image: "https://i.ibb.co/59nnh8s/path-forest-23-2147632811.jpg",
-    title: "Forest Path",
-    category: "Natural",
+    image: 'https://i.ibb.co/59nnh8s/path-forest-23-2147632811.jpg',
+    title: 'Forest Path',
+    category: 'Natural',
     description:
-      "A peaceful forest path surrounded by tall trees and soft light.",
+      'A peaceful forest path surrounded by tall trees and soft light.',
   },
   {
     image:
-      "https://i.ibb.co/dMc7XgV/modern-skyline-building-banner-with-eye-catching-view-1017-50542.jpg",
-    title: "Urban Skyline",
-    category: "Photography",
-    description: "A stunning view of the city skyline captured at dusk.",
+      'https://i.ibb.co/dMc7XgV/modern-skyline-building-banner-with-eye-catching-view-1017-50542.jpg',
+    title: 'Urban Skyline',
+    category: 'Photography',
+    description: 'A stunning view of the city skyline captured at dusk.',
   },
   {
     image:
-      "https://i.ibb.co/3Ty6p1w/futuristic-half-robot-tiger-23-2151558852.jpg",
-    title: "Wildlife in Action",
-    category: "Photography",
-    description: "A close-up shot of wildlife in its natural habitat.",
+      'https://i.ibb.co/3Ty6p1w/futuristic-half-robot-tiger-23-2151558852.jpg',
+    title: 'Wildlife in Action',
+    category: 'Photography',
+    description: 'A close-up shot of wildlife in its natural habitat.',
   },
 ];
 
@@ -41,7 +41,7 @@ function Gallery() {
   const [filterCategory, setFilterCategory] = useState(galleryData);
 
   // selected category
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   return (
     <>
@@ -52,12 +52,12 @@ function Gallery() {
           <ul className="flex items-center gap-4 md:gap-6 text-white text-sm font-medium">
             <li
               onClick={() => {
-                setSelectedCategory("All");
+                setSelectedCategory('All');
                 setFilterCategory(galleryData);
               }}
             >
               <button
-                className={selectedCategory === "All" ? "text-blue-400" : ""}
+                className={selectedCategory === 'All' ? 'text-blue-400' : ''}
               >
                 All
               </button>
@@ -76,8 +76,8 @@ function Gallery() {
                   <button
                     className={
                       selectedCategory === category
-                        ? "text-blue-400"
-                        : "text-white"
+                        ? 'text-blue-400'
+                        : 'text-white'
                     }
                   >
                     {category}
