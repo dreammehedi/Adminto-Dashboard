@@ -12,41 +12,10 @@ function DashboardChart() {
           {/* chart */}
 
           <ReactApexChart
-            options={{
-              dataLabels: {
-                enabled: true,
-                offsetY: -32,
-                style: {
-                  fontSize: "12px",
-                  colors: ["#fff"],
-                },
-              },
-              responsive: [
-                {
-                  breakpoint: 480,
-                  options: {
-                    chart: {
-                      width: 200,
-                    },
-                    legend: {
-                      position: "bottom",
-                    },
-                  },
-                },
-              ],
-              plotOptions: {
-                bar: {
-                  borderRadius: 5,
-                  dataLabels: {
-                    position: "top",
-                    fontSize: "24px",
-                  },
-                },
-              },
-            }}
-            series={[44, 55, 13, 43, 22]}
+            options={{}}
+            series={[44, 55, 13, 43]}
             type="donut"
-            width={380}
+            width={"95%"}
           />
         </div>
 
@@ -67,18 +36,6 @@ function DashboardChart() {
                   },
                 },
               },
-              dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                  return val + "%";
-                },
-                offsetY: -32,
-                style: {
-                  fontSize: "12px",
-                  colors: ["#c4c7d1"],
-                },
-              },
-
               xaxis: {
                 categories: [
                   "2018",
@@ -89,11 +46,6 @@ function DashboardChart() {
                   "2023",
                   "2024",
                 ],
-                position: "top",
-
-                tooltip: {
-                  enabled: true,
-                },
               },
             }}
             series={[
@@ -103,7 +55,35 @@ function DashboardChart() {
             ]}
             type="bar"
             height={350}
-            width={350}
+            width={"100%"}
+          />
+        </div>
+
+        {/* total revenue chart */}
+        <div className="p-4 md:p-6 rounded-md bg-primary space-y-6">
+          {/* title */}
+          <h3 className="text-white font-semibold text-sm">Total Revenue</h3>
+          {/* chart */}
+
+          <ReactApexChart
+            options={{
+              xaxis: {
+                categories: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+              },
+            }}
+            series={[
+              {
+                name: "Series A",
+                data: [45, 52, 38, 24, 33, 26, 21],
+              },
+              {
+                name: "Series B",
+                data: [35, 41, 62, 42, 13, 18, 29],
+              },
+            ]}
+            type="line"
+            width={"100%"}
+            height={350}
           />
         </div>
       </section>
