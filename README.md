@@ -121,11 +121,3 @@ We are here to help you make the most out of your Adminto Dashboard experience!
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://www.facebook.com/dreammehedihassan/) file for more details.
-
-```
-
-```
-
-```
-
-```
