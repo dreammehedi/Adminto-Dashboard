@@ -57,19 +57,14 @@ function Gallery() {
       },
     }
   );
-
+  if (galleryDataPending) {
+    return <Loader></Loader>;
+  }
   return (
     <>
       {/* gallery page */}
       <section className="bg-secondary py-6 min-h-screen">
-        {galleryDataPending && <Loader></Loader>}
-        {getGalleryData?.length < 0 ? (
-          <div className="flex justify-center items-center text-center">
-            <p className="text-red-500 font-semibold text-center">
-              No Data Found!
-            </p>
-          </div>
-        ) : (
+        {getGalleryData?.length > 0 ? (
           <div className="container -mt-6 overflow-hidden">
             {/* category */}
             <ul className="flex items-center gap-4 md:gap-6 text-white text-sm font-medium">
@@ -140,6 +135,12 @@ function Gallery() {
                 );
               })}
             </div>
+          </div>
+        ) : (
+          <div className="flex justify-center items-center text-center">
+            <p className="text-red-500 font-semibold text-center">
+              No Data Found!
+            </p>
           </div>
         )}
       </section>
