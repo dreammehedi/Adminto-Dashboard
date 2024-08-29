@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import Modal from "react-modal";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loader from "../../../shared/loader/Loader";
-
 function Gallery() {
   const axiosPublic = useAxiosPublic();
 
@@ -24,7 +24,11 @@ function Gallery() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // get gallery data from database
-  const { isLoading: galleryDataPending, error } = useQuery({
+  const {
+    isLoading: galleryDataPending,
+    error,
+    refetch: galleryDataRefetch,
+  } = useQuery({
     queryKey: ["galleryData"],
     queryFn: async () => {
       const fetchData = await axiosPublic.get("/gallery");
@@ -43,8 +47,8 @@ function Gallery() {
   // handle errors
   if (error) {
     return (
-      <div className="flex justify-center items-center text-center">
-        <p className="text-red-500 font-semibold text-center">
+      <div className="flex justify-center items-center text-center h-screen">
+        <p className="text-red-500 font-semibold text-center ">
           Something went wrong! Please try again later.
         </p>
       </div>
@@ -69,104 +73,183 @@ function Gallery() {
   };
   Modal.setAppElement("#root");
 
+  // gallery data add to the database
+  const galleryDataAdd = async (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const galleryName = from.galleryName.value;
+    const galleryCategory = from.galleryCategory.value;
+    const galleryDescription = from.galleryDescription.value;
+    const galleryImage = from.galleryImage.files[0];
+
+    const imgBBApiKey = import.meta.env.VITE_IMGBB_API_KEY;
+
+    // Create FormData and append the image file
+    const formData = new FormData();
+    formData.append("image", galleryImage);
+
+    try {
+      // Upload image to ImgBB
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=${imgBBApiKey}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        const imageUrl = result.data.url;
+        // gallery data
+        const galleryData = {
+          title: galleryName,
+          category: galleryCategory,
+          description: galleryDescription,
+          image: imageUrl,
+        };
+
+        // Add the gallery data to the database
+        const postGalleryData = await axiosPublic.post("/gallery", galleryData);
+        const resPostGalleryData = await postGalleryData.data;
+        if (resPostGalleryData.success) {
+          Swal.fire({
+            title: "Gallery Added Successfully.",
+            icon: "success",
+            timer: 1000,
+          });
+          galleryDataRefetch();
+          setModalIsOpen(false);
+        }
+      } else {
+        Swal.fire({
+          title: "Error Uploading Image!",
+          icon: "error",
+          timer: 1000,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error Adding Gallery!",
+        icon: "error",
+        timer: 1000,
+      });
+    }
+  };
+
   return (
     <>
       {/* gallery page */}
       <section className="bg-secondary py-6 min-h-screen">
+        {/* new gallery add Modal */}
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={() => {
+            setModalIsOpen(false);
+          }}
+          style={customStyles}
+          className={""}
+        >
+          <form onSubmit={galleryDataAdd} className="flex flex-col gap-4">
+            <div className="flex flex-col space-y-2">
+              <label
+                className="text-text-color text-sm font-semibold capitalize"
+                htmlFor="fullName"
+              >
+                Gallery Name
+              </label>
+              <input
+                placeholder="Enter Gallery Name.."
+                className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                type="text"
+                name="galleryName"
+                id="galleryName"
+                required
+              />
+            </div>
+            <div className="flex flex-col space-y-2">
+              <label
+                className="text-text-color text-sm font-semibold capitalize"
+                htmlFor="fullName"
+              >
+                Gallery Category
+              </label>
+              <input
+                placeholder="Enter Gallery Category.."
+                className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                type="text"
+                name="galleryCategory"
+                id="galleryCategory"
+                required
+              />
+            </div>
+            <div className="flex flex-col space-y-2">
+              <label
+                className="text-text-color text-sm font-semibold capitalize"
+                htmlFor="fullName"
+              >
+                Gallery Description
+              </label>
+              <input
+                placeholder="Enter Gallery Short Description.."
+                className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                type="text"
+                name="galleryDescription"
+                id="galleryDescription"
+                required
+              />
+            </div>{" "}
+            <div className="flex flex-col space-y-2">
+              <label
+                className="text-text-color text-sm font-semibold capitalize"
+                htmlFor="fullName"
+              >
+                Gallery Image
+              </label>
+              <input
+                placeholder="Enter Gallery Short Description.."
+                className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                type="file"
+                name="galleryImage"
+                id="galleryImage"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-[#71b6f9] rounded-md text-white p-2 hover:bg-[#3973ad] transition-all duration-300"
+            >
+              Add
+            </button>
+          </form>
+
+          <button
+            onClick={() => {
+              setModalIsOpen(false);
+            }}
+            className="absolute top-2 right-2 text-white font-semibold text-2xl my-transition hover:text-red-400"
+          >
+            <IoMdCloseCircle></IoMdCloseCircle>
+          </button>
+        </Modal>
+
+        {/* add new gallery data */}
+        {allGalleryData.length < 1 && (
+          <div className="container flex justify-center lg:justify-end">
+            <button
+              onClick={() => {
+                setModalIsOpen(true);
+              }}
+              className="text-white rounded-md px-5 py-2 bg-blue-400 my-transition hover:bg-blue-400/50 text-sm"
+            >
+              Add New Gallery
+            </button>
+          </div>
+        )}
+
         {allGalleryData?.length > 0 ? (
           <div className="container -mt-6 overflow-hidden">
-            {/* new gallery add Modal */}
-            <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={() => {
-                setModalIsOpen(false);
-              }}
-              style={customStyles}
-              className={""}
-            >
-              <form className="flex flex-col gap-4">
-                <div className="flex flex-col space-y-2">
-                  <label
-                    className="text-text-color text-sm font-semibold capitalize"
-                    htmlFor="fullName"
-                  >
-                    Gallery Name
-                  </label>
-                  <input
-                    placeholder="Enter Gallery Name.."
-                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
-                    type="text"
-                    name="galleryName"
-                    id="galleryName"
-                    required
-                  />
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <label
-                    className="text-text-color text-sm font-semibold capitalize"
-                    htmlFor="fullName"
-                  >
-                    Gallery Category
-                  </label>
-                  <input
-                    placeholder="Enter Gallery Category.."
-                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
-                    type="text"
-                    name="galleryCategory"
-                    id="galleryCategory"
-                    required
-                  />
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <label
-                    className="text-text-color text-sm font-semibold capitalize"
-                    htmlFor="fullName"
-                  >
-                    Gallery Description
-                  </label>
-                  <input
-                    placeholder="Enter Gallery Short Description.."
-                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
-                    type="text"
-                    name="galleryDescription"
-                    id="galleryDescription"
-                    required
-                  />
-                </div>{" "}
-                <div className="flex flex-col space-y-2">
-                  <label
-                    className="text-text-color text-sm font-semibold capitalize"
-                    htmlFor="fullName"
-                  >
-                    Gallery Image
-                  </label>
-                  <input
-                    placeholder="Enter Gallery Short Description.."
-                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
-                    type="file"
-                    name="galleryImage"
-                    id="galleryImage"
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="bg-[#71b6f9] rounded-md text-white p-2 hover:bg-[#3973ad] transition-all duration-300"
-                >
-                  Add
-                </button>
-              </form>
-
-              <button
-                onClick={() => {
-                  setModalIsOpen(false);
-                }}
-                className="absolute top-2 right-2 text-white font-semibold text-2xl my-transition hover:text-red-400"
-              >
-                <IoMdCloseCircle></IoMdCloseCircle>
-              </button>
-            </Modal>
-
             <div className="flex flex-col md:flex-row justify-center  flex-wrap md:justify-between items-center gap-4">
               {/* category */}
               <ul className="flex items-center gap-4 md:gap-6 text-white text-sm font-medium">
@@ -196,7 +279,6 @@ function Gallery() {
                   );
                 })}
               </ul>
-
               {/* add new gallery data */}
               <button
                 onClick={() => {
@@ -272,7 +354,7 @@ function Gallery() {
             </div>
           </div>
         ) : (
-          <div className="flex justify-center items-center text-center">
+          <div className="flex justify-center items-center text-center pt-4">
             <p className="text-red-500 font-semibold text-center">
               No Data Found!
             </p>
