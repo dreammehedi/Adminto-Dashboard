@@ -46,6 +46,18 @@ function Calendar() {
 
   const calendarEventAdd = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const eventName = form.eventName.value;
+    const eventStartTime = form.eventStartTime.value;
+    const eventEndTime = form.eventEndTime.value;
+    const eventAllDay = form.eventAllDay.checked;
+    const eventData = {
+      title: eventName,
+      start: eventStartTime,
+      end: eventEndTime,
+      allDay: eventAllDay,
+    };
+    console.log(eventData);
   };
   Modal.setAppElement("#root");
   return (
@@ -108,6 +120,22 @@ function Calendar() {
                   name="eventEndTime"
                   id="eventEndTime"
                   required
+                />
+              </div>
+              <div className="flex">
+                <label
+                  className="text-text-color text-sm font-semibold capitalize"
+                  htmlFor="eventAllDay"
+                >
+                  Event All Day
+                </label>
+
+                <input
+                  placeholder="Enter Gallery Short Description.."
+                  className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                  type="checkbox"
+                  name="eventAllDay"
+                  id="eventAllDay"
                 />
               </div>
               <button
