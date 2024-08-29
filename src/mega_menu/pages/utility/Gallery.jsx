@@ -44,17 +44,6 @@ function Gallery() {
     return <Loader />;
   }
 
-  // handle errors
-  if (error) {
-    return (
-      <div className="flex justify-center items-center text-center h-screen">
-        <p className="text-red-500 font-semibold text-center ">
-          Something went wrong! Please try again later.
-        </p>
-      </div>
-    );
-  }
-
   const customStyles = {
     overlay: {
       backgroundColor: "#0538915e",
@@ -120,7 +109,6 @@ function Gallery() {
             timer: 1000,
           });
           galleryDataRefetch();
-          setModalIsOpen(false);
         }
       } else {
         Swal.fire({
@@ -135,6 +123,9 @@ function Gallery() {
         icon: "error",
         timer: 1000,
       });
+    } finally {
+      galleryDataRefetch();
+      setModalIsOpen(false);
     }
   };
 
@@ -302,7 +293,7 @@ function Gallery() {
                       >
                         {/* image */}
                         <img
-                          className="rounded-md p-1 object-fill w-full h-auto min-h-[120px] my-transition hover:scale-[1.03] hover:cursor-pointer"
+                          className="rounded-md p-1 object-fill w-full h-auto min-h-[120px] max-h-[150px] my-transition hover:scale-[1.03] hover:cursor-pointer"
                           src={image}
                           alt={title}
                         />
