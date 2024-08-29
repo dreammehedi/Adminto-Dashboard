@@ -1,0 +1,18 @@
+.rbc-off-range-bg {
+  background-color: #122c7c57 !important;
+}
+.rbc-calendar {
+  background-color: #282e38;
+}
+.rbc-today {
+  background-color: #60a5fa;
+}
+.rbc-btn-group {
+  background-color: #60a5fa;
+}
+.rbc-btn-group:hover {
+  background-color: #30a8fa;
+}
+.rbc-toolbar button:focus {
+  background-color: orange;
+}
