@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { IoMdCloseCircle } from "react-icons/io";
+import Modal from "react-modal";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loader from "../../../shared/loader/Loader";
 
@@ -17,6 +19,9 @@ function Gallery() {
 
   // filtered gallery data based on category
   const [filterCategory, setFilterCategory] = useState([]);
+
+  // modal
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // get gallery data from database
   const { isLoading: galleryDataPending, error } = useQuery({
@@ -46,40 +51,162 @@ function Gallery() {
     );
   }
 
+  const customStyles = {
+    overlay: {
+      backgroundColor: "#0538915e",
+      position: "fixed",
+      zIndex: 9999,
+    },
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "#282e38",
+    },
+  };
+  Modal.setAppElement("#root");
+
   return (
     <>
       {/* gallery page */}
       <section className="bg-secondary py-6 min-h-screen">
         {allGalleryData?.length > 0 ? (
           <div className="container -mt-6 overflow-hidden">
-            {/* category */}
-            <ul className="flex items-center gap-4 md:gap-6 text-white text-sm font-medium">
-              {allGalleryCategory.map((category, ind) => {
-                return (
-                  <li
-                    onClick={() => {
-                      setSelectedCategory(category);
-                      setFilterCategory(
-                        allGalleryData.filter(
-                          (item) => item.category === category
-                        )
-                      );
-                    }}
-                    key={ind}
+            {/* new gallery add Modal */}
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={() => {
+                setModalIsOpen(false);
+              }}
+              style={customStyles}
+              className={""}
+            >
+              <form className="flex flex-col gap-4">
+                <div className="flex flex-col space-y-2">
+                  <label
+                    className="text-text-color text-sm font-semibold capitalize"
+                    htmlFor="fullName"
                   >
-                    <button
-                      className={
-                        selectedCategory === category
-                          ? "text-blue-400"
-                          : "text-white"
-                      }
+                    Gallery Name
+                  </label>
+                  <input
+                    placeholder="Enter Gallery Name.."
+                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                    type="text"
+                    name="galleryName"
+                    id="galleryName"
+                    required
+                  />
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <label
+                    className="text-text-color text-sm font-semibold capitalize"
+                    htmlFor="fullName"
+                  >
+                    Gallery Category
+                  </label>
+                  <input
+                    placeholder="Enter Gallery Category.."
+                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                    type="text"
+                    name="galleryCategory"
+                    id="galleryCategory"
+                    required
+                  />
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <label
+                    className="text-text-color text-sm font-semibold capitalize"
+                    htmlFor="fullName"
+                  >
+                    Gallery Description
+                  </label>
+                  <input
+                    placeholder="Enter Gallery Short Description.."
+                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                    type="text"
+                    name="galleryDescription"
+                    id="galleryDescription"
+                    required
+                  />
+                </div>{" "}
+                <div className="flex flex-col space-y-2">
+                  <label
+                    className="text-text-color text-sm font-semibold capitalize"
+                    htmlFor="fullName"
+                  >
+                    Gallery Image
+                  </label>
+                  <input
+                    placeholder="Enter Gallery Short Description.."
+                    className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
+                    type="file"
+                    name="galleryImage"
+                    id="galleryImage"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-[#71b6f9] rounded-md text-white p-2 hover:bg-[#3973ad] transition-all duration-300"
+                >
+                  Add
+                </button>
+              </form>
+
+              <button
+                onClick={() => {
+                  setModalIsOpen(false);
+                }}
+                className="absolute top-2 right-2 text-white font-semibold text-2xl my-transition hover:text-red-400"
+              >
+                <IoMdCloseCircle></IoMdCloseCircle>
+              </button>
+            </Modal>
+
+            <div className="flex flex-col md:flex-row justify-center  flex-wrap md:justify-between items-center gap-4">
+              {/* category */}
+              <ul className="flex items-center gap-4 md:gap-6 text-white text-sm font-medium">
+                {allGalleryCategory.map((category, ind) => {
+                  return (
+                    <li
+                      onClick={() => {
+                        setSelectedCategory(category);
+                        setFilterCategory(
+                          allGalleryData.filter(
+                            (item) => item.category === category
+                          )
+                        );
+                      }}
+                      key={ind}
                     >
-                      {category}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+                      <button
+                        className={
+                          selectedCategory === category
+                            ? "text-blue-400"
+                            : "text-white"
+                        }
+                      >
+                        {category}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              {/* add new gallery data */}
+              <button
+                onClick={() => {
+                  setModalIsOpen(true);
+                }}
+                className="text-white rounded-md px-5 py-2 bg-blue-400 my-transition hover:bg-blue-400/50 text-sm"
+              >
+                Add New Gallery
+              </button>
+            </div>
 
             {/* gallery */}
             <div className="py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 my-transition">
