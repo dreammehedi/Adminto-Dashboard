@@ -5,6 +5,7 @@ import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { IoMdCloseCircle } from "react-icons/io";
 import Modal from "react-modal";
+import Swal from "sweetalert2";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import "./calender.css";
 
@@ -44,7 +45,7 @@ function Calendar() {
     },
   });
 
-  const calendarEventAdd = (e) => {
+  const calendarEventAdd = async (e) => {
     e.preventDefault();
     const form = e.target;
     const eventName = form.eventName.value;
@@ -57,6 +58,28 @@ function Calendar() {
       end: eventEndTime,
       allDay: eventAllDay,
     };
+
+    try {
+      const postData = await axiosPublic.post("/calendar", eventData);
+      const resData = await postData.data;
+      if (resData.success) {
+        Swal.fire({
+          title: "Success",
+          text: "Event added successfully!",
+          icon: "success",
+          timer: 1000,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: error.message,
+        icon: "error",
+        timer: 1000,
+      });
+    } finally {
+      setModalIsOpen(false);
+    }
     console.log(eventData);
   };
   Modal.setAppElement("#root");
@@ -100,7 +123,7 @@ function Calendar() {
                 <input
                   placeholder="Enter Gallery Category.."
                   className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
-                  type="time"
+                  type="datetime-local"
                   name="eventStartTime"
                   id="eventStartTime"
                   required
@@ -116,7 +139,7 @@ function Calendar() {
                 <input
                   placeholder="Enter Gallery Short Description.."
                   className="outline-none rounded text-text-color border-gray-600 border p-2 text-sm bg-primary"
-                  type="time"
+                  type="datetime-local"
                   name="eventEndTime"
                   id="eventEndTime"
                   required
