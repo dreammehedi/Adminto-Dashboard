@@ -20,12 +20,17 @@ import Dashboard from "./../pages/dashboard/Dashboard";
 import Error from "./../pages/error/Error";
 import SignIn from "./../pages/signin/SignIn";
 import SignUp from "./../pages/signup/SignUp";
+import ProtectRouter from "./ProtectRouter";
 
 const router = createBrowserRouter([
   // main layout and home router
   {
     path: "/",
-    element: <DashboardMainLayout></DashboardMainLayout>,
+    element: (
+      <ProtectRouter>
+        <DashboardMainLayout></DashboardMainLayout>
+      </ProtectRouter>
+    ),
     errorElement: <Error></Error>,
     children: [
       {

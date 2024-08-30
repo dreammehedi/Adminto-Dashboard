@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthProvider";
 import Logo from "../../shared/header/Logo";
 const SignUp = () => {
   // show password
@@ -17,6 +18,12 @@ const SignUp = () => {
     const registerData = { name, email, pass, checkbox };
     console.log(registerData);
   };
+
+  // user
+  const { user } = useContext(AuthContext);
+  if (user) {
+    return <Navigate to={"/"}></Navigate>;
+  }
 
   return (
     <>
