@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
@@ -9,6 +9,7 @@ import {
 } from "react-icons/io";
 import { MdLockOpen, MdSettingsSuggest } from "react-icons/md";
 import { PiArrowCounterClockwiseBold } from "react-icons/pi";
+import { AuthContext } from "../../auth/AuthProvider";
 import DesktopNavbar from "../navbar/DesktopNavbar";
 import Logo from "./Logo";
 
@@ -21,6 +22,9 @@ function Header() {
 
   // mobile navbar
   const [mobileNavbar, setMobileNavbar] = useState(false);
+
+  const { name } = useContext(AuthContext);
+  console.log(name);
 
   return (
     <>
