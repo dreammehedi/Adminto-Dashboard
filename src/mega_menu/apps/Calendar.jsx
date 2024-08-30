@@ -80,9 +80,11 @@ function Calendar() {
     } finally {
       setModalIsOpen(false);
     }
-    console.log(eventData);
   };
   Modal.setAppElement("#root");
+
+  console.log(calendarEvents);
+
   return (
     <>
       {/* calendar apps */}
